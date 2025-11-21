@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isnpro Market Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="star-container"></div>
+    <div id="sidebar-overlay"></div>
+
+    <nav id="sidebar">
+        <div class="sidebar-header-profile">
+            <img src="https://api.deline.web.id/uhxRrZLShb.jpg" alt="Profile" class="sidebar-profile-pic-large">
+            <h4 class="sidebar-market-name">Isnpro market</h4>
+        </div>
+        
+        <div class="sidebar-label">UTAMA</div>
+        <ul class="sidebar-store-menu">
+            <li>
+                <a href="#" id="isnpro-toggle"> 
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Isnpro store</span>
+                    <span class="store-arrow">&gt;</span>
+                </a>
+                <ul id="isnpro-submenu" class="sidebar-submenu">
+                    <li><a href="#" data-page="sewa_bot">Sewa bot</a></li>
+                    <li><a href="#" data-page="topup_game">Topup game</a></li>
+                    <li><a href="#" data-page="script_bot">Script bot</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="sidebar-label">LAINNYA</div>
+        <ul class="sidebar-store-menu">
+            <li>
+                <a href="#" id="acc-game-2-toggle"> 
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Account game</span>
+                    <span class="store-arrow">&gt;</span>
+                </a>
+                <ul id="acc-game-2-submenu" class="sidebar-submenu">
+                    <li><a href="#" data-page="acc_roblox">Akun roblox</a></li>
+                    <li><a href="#" data-page="acc_ml">Akun mobile legends</a></li>
+                    <li><a href="#" data-page="acc_ff">Akun free fire</a></li>
+                    <li><a href="#" data-page="acc_football">Akun football</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" id="joki-toggle"> 
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Joki game</span>
+                    <span class="store-arrow">&gt;</span>
+                </a>
+                <ul id="joki-submenu" class="sidebar-submenu">
+                    <li><a href="#" data-page="joki_roblox">Joki roblox</a></li>
+                    <li><a href="#" data-page="joki_rank">Joki rank</a></li>
+                    <li><a href="#" data-page="joki_gendong">Joki Gendong</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="sidebar-footer-menu">
+            <li>
+                <a href="#" id="btn-home-l1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    <span>Kembali halaman utama</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="btn-exit-l1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    <span>Keluar dari website</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="navbar" id="navbar">
+        <div class="hamburger-menu">
+            <div class="line"></div><div class="line"></div><div class="line"></div>
+        </div>
+        <div class="nav-title" id="navTitle" style="cursor: pointer;">ISNPRO MARKET</div>
+        <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Profil" class="nav-profile-pic" id="navbarProfilePic">
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content-container">
+            <div class="loading-spinner"></div>
+            <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Loading" class="loading-profile-pic">
+        </div>
+        <div id="loadingText" class="loading-text">loading</div>
+    </div>
+
+    <div id="halamanBaru" class="halaman-baru">
+        
+        <div id="default-content">
+            <h2 style="font-size: 2rem; margin-bottom:10px;">Welcome to website Isnpro</h2>
+            <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Banner" class="welcome-image">
+            <p style="margin-top: 15px;">Klik <b>garis tiga</b> (menu) untuk melihat kategori produk.</p>
+
+            <div class="info-section">
+                <h3 class="content-subheading">Kenapa beli di sini?</h3>
+                <p class="info-text">1. Amanah & Terpercaya<br>2. Fast Respons<br>3. Harga Termurah</p>
+            </div>
+            <div class="info-section">
+                <h3 class="content-subheading">Cara Memesan</h3>
+                <p class="info-text">1. Buka Menu (Kiri Atas)<br>2. Pilih Kategori & Produk<br>3. Checkout Sekarang</p>
+            </div>
+        </div>
+
+        <div id="sewa_bot-content" class="page-content">
+            <h2 class="page-title">Halaman Sewa Bot</h2>
+            <div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari paket..."></div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
+        <div id="topup_game-content" class="page-content">
+            <h2 class="page-title">Halaman Topup Game</h2>
+            <div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari game..."></div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
+        <div id="script_bot-content" class="page-content">
+            <h2 class="page-title">Halaman Script Bot</h2>
+            <div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari script..."></div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
+        <div id="acc_roblox-content" class="page-content">
+            <h2 class="page-title">Jual Akun Roblox</h2>
+            <div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari akun..."></div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
+        <div id="acc_ml-content" class="page-content">
+            <h2 class="page-title">Jual Akun Mobile Legends</h2>
+            <div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari akun..."></div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
+        <div id="acc_ff-content" class="page-content">
+            <h2 class="page-title">Jual Akun Free Fire</h2>
+            <div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari akun..."></div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
+        <div id="acc_football-content" class="page-content">
+            <h2 class="page-title">Jual Akun E-Football</h2>
+            <div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari akun..."></div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
+        <div id="joki_roblox-content" class="page-content">
+            <h2 class="page-title">Jasa Joki Roblox</h2>
+            <div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari joki..."></div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
+        <div id="joki_rank-content" class="page-content">
+            <h2 class="page-title">Jasa Joki Rank (ML/FF)</h2>
+            <div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari rank..."></div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
+        <div id="joki_gendong-content" class="page-content">
+            <h2 class="page-title">Jasa Joki Gendong</h2>
+            <div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari mabar..."></div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
+    </div>
+
+    <div id="productModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            
+            <div class="slider-container">
+                <button class="slider-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+                <div id="modalImagesWrapper">
+                    </div>
+                <button class="slider-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+
+            <div id="modalDetails">
+                <h3 class="modal-title" id="mTitle">Nama Produk</h3>
+                <div class="modal-price" id="mPrice">Rp 0</div>
+                <div class="modal-desc" id="mDesc">Deskripsi...</div>
+                
+                <div class="modal-actions">
+                    <button id="btnBuyDirect" class="btn-modal btn-direct">Beli Tanpa MC (Chat Penjual)</button>
+                    <button id="btnBuyMC" class="btn-modal btn-mc">Beli Menggunakan MC (Admin)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="module">
+    // --- KONFIGURASI ---
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        // 🔴 PASTE CONFIG FIREBASE ANDA DI SINI
+        apiKey: "AIzaSyC5lEXTKy3HVUvsI_9KuDrJ7pR36RFL9VM",
+        authDomain: "isnpro-website.firebaseapp.com",
+        projectId: "isnpro-website",
+        storageBucket: "isnpro-website.firebasestorage.app", // PASTIKAN ADA
+        messagingSenderId: "105955332664",
+        appId: "1:105955332664:web:0b6fdc1205dbb4a141cccd"
+    };
+
+    // --- INISIALISASI ---
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // --- LOGIC UTAMA ---
+
+    const contentDiv = document.getElementById('content');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    let loadingInterval;
+
+    // Mapping Kategori (Sama seperti di admin.html)
+    const categoryMap = {
+        'sewa_bot': 'Sewa bot', 'topup_game': 'Topup game', 'script_bot': 'Script bot',
+        'acc_roblox': 'Akun Roblox', 'acc_ml': 'Akun Mobile Legends', 'acc_ff': 'Akun Free Fire', 'acc_football': 'Akun E-Football',
+        'joki_roblox': 'Joki Roblox', 'joki_rank': 'Joki Rank', 'joki_gendong': 'Joki Gendong',
+    };
+
+
+    function startLoading() {
+        loadingOverlay.classList.remove('hide');
+        const loadingText = document.getElementById('loadingText');
+        let dots = 0;
+        loadingInterval = setInterval(() => {
+            dots = (dots + 1) % 4;
+            loadingText.textContent = 'loading' + '.'.repeat(dots);
+        }, 500);
+    }
+
+    function stopLoading() {
+        clearInterval(loadingInterval);
+        loadingOverlay.classList.add('hide');
+    }
+
+    function formatRupiah(number) {
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0
+        }).format(number);
+    }
+
+    // 🚀 FUNGSI UNTUK MEMBUAT KARTU PRODUK
+    function createProductCard(product) {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.dataset.id = product.id; // Simpan ID untuk modal
+
+        // Ambil gambar pertama sebagai thumbnail (dari Firebase Storage URL)
+        const thumbnailUrl = product.images[0]; 
+
+        card.innerHTML = `
+            <img src="${thumbnailUrl}" alt="${product.name}" class="product-img">
+            <div class="product-info">
+                <h3 class="product-title">${product.name}</h3>
+                <p class="product-price">${formatRupiah(product.price)}</p>
+                <button class="btn-detail">Lihat Detail</button>
+            </div>
+        `;
+
+        card.querySelector('.btn-detail').addEventListener('click', () => {
+            showProductModal(product);
+        });
+
+        return card;
+    }
+
+    // 🚀 FUNGSI UNTUK MENAMPILKAN MODAL DENGAN SLIDER GAMBAR FIREBASE STORAGE
+    let currentSlide = 0;
+
+    function showSlide(n) {
+        const slides = document.querySelectorAll('#modalSlider .slider-img');
+        if (slides.length === 0) return;
+
+        if (n >= slides.length) { currentSlide = 0 }
+        if (n < 0) { currentSlide = slides.length - 1 }
+
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+        });
+        slides[currentSlide].classList.add('active');
+    }
+
+    function plusSlides(n) {
+        currentSlide += n;
+        showSlide(currentSlide);
+    }
+
+    function showProductModal(product) {
+        currentSlide = 0; // Reset slider
+        const modal = document.getElementById('productModal');
+        const sliderContainer = document.getElementById('modalSlider');
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+        
+        // Bersihkan slider sebelumnya
+        sliderContainer.innerHTML = ''; 
+
+        // 🖼️ MEMBANGUN SLIDER DARI URL FIREBASE STORAGE
+        product.images.forEach((url, index) => {
+            const img = document.createElement('img');
+            img.src = url; // Menggunakan URL dari Firebase Storage
+            img.alt = `${product.name} Gambar ${index + 1}`;
+            img.className = 'slider-img';
+            if (index === 0) {
+                img.classList.add('active'); 
+            }
+            sliderContainer.appendChild(img);
+        });
+
+        // Tampilkan/Sembunyikan tombol slider
+        const hasMultipleImages = product.images.length > 1 && product.images[0] !== "https://placehold.co/400x400/222/white?text=No+Image";
+
+        if (hasMultipleImages) {
+            prevBtn.style.display = 'block';
+            nextBtn.style.display = 'block';
+            // Pastikan event listener hanya ditambahkan sekali atau dihandle dengan benar
+            // Kami akan menambahkannya di bawah agar selalu aktif
+        } else {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+        }
+
+        // Isi konten teks modal
+        document.getElementById('modalTitle').textContent = product.name;
+        document.getElementById('modalPrice').textContent = formatRupiah(product.price);
+        document.getElementById('modalDesc').textContent = product.description;
+        
+        const waNumber = product.whatsapp.startsWith('62') ? product.whatsapp : '62' + product.whatsapp;
+        const waMessage = encodeURIComponent(`Halo, saya tertarik dengan produk *${product.name}* yang dijual di Isnpro Market.`);
+        const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
+        document.getElementById('modalWaLink').href = waLink;
+
+        modal.classList.add('active');
+        showSlide(0); // Tampilkan slide pertama
+
+        // Tambahkan event listener untuk slider (jika belum ada)
+        // Ini harusnya ada di luar fungsi modal agar tidak diduplikasi, tapi jika Anda ingin 
+        // memasukkannya ke sini, pastikan Anda menghapusnya saat modal ditutup.
+    }
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('productModal').classList.remove('active');
+    });
+
+    // Event Listeners Slider
+    document.getElementById('prevSlide').addEventListener('click', () => plusSlides(-1));
+    document.getElementById('nextSlide').addEventListener('click', () => plusSlides(1));
+
+
+    // FUNGSI MEMUAT DATA DARI FIRESTORE BERDASARKAN KATEGORI
+    async function loadProducts(category) {
+        const productList = document.getElementById('productList');
+        productList.innerHTML = ''; 
+        
+        // Hapus Page Content sebelumnya
+        while (contentDiv.firstChild) {
+            contentDiv.removeChild(contentDiv.firstChild);
+        }
+
+        const pageTitle = document.createElement('h2');
+        pageTitle.className = 'page-title';
+        pageTitle.textContent = categoryMap[category] || 'Produk';
+        contentDiv.appendChild(pageTitle);
+
+        const listContainer = document.createElement('div');
+        listContainer.id = 'productList';
+        listContainer.className = 'product-list-container';
+        contentDiv.appendChild(listContainer);
+        
+        startLoading();
+
+        try {
+            const q = query(collection(db, "products"), where("category", "==", category));
+            const querySnapshot = await getDocs(q);
+            
+            if (querySnapshot.empty) {
+                listContainer.innerHTML = '<p class="empty-text">Belum ada produk untuk kategori ini.</p>';
+            } else {
+                querySnapshot.forEach((doc) => {
+                    const productData = { id: doc.id, ...doc.data() };
+                    const card = createProductCard(productData);
+                    listContainer.appendChild(card);
+                });
+            }
+        } catch (e) {
+            console.error("Error fetching documents: ", e);
+            listContainer.innerHTML = '<p class="empty-text">Gagal memuat data. Cek koneksi atau rules Firebase Anda.</p>';
+        } finally {
+            stopLoading();
+        }
+    }
+
+
+    // FUNGSI UNTUK MENGGANTI HALAMAN
+    function showPage(pageId) {
+        document.querySelectorAll('.sidebar-submenu a').forEach(link => link.classList.remove('active'));
+        const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+        if(activeLink) {
+             activeLink.classList.add('active');
+        }
+
+        if (pageId && categoryMap[pageId]) {
+            loadProducts(pageId);
+        } else {
+            // Tampilan default (misalnya, halaman 'Tentang Kami' atau landing)
+            while (contentDiv.firstChild) {
+                contentDiv.removeChild(contentDiv.firstChild);
+            }
+            const defaultContent = document.createElement('h2');
+            defaultContent.className = 'page-title';
+            defaultContent.textContent = 'Selamat Datang di Isnpro Market';
+            contentDiv.appendChild(defaultContent);
+            stopLoading();
+        }
+    }
+
+    // --- EVENT LISTENERS ---
+    document.querySelectorAll('.sidebar-submenu a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const page = e.target.dataset.page;
+            // Update URL tanpa reload
+            history.pushState({ page: page }, '', `?page=${page}`); 
+            showPage(page);
+        });
+    });
+
+    // Toggle Sidebar
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+        document.getElementById('sidebar').classList.add('active');
+        document.getElementById('sidebar-overlay').classList.add('active');
+    });
+
+    document.getElementById('sidebar-overlay').addEventListener('click', () => {
+        document.getElementById('sidebar').classList.remove('active');
+        document.getElementById('sidebar-overlay').classList.remove('active');
+    });
+
+    document.getElementById('isnpro-toggle').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('isnpro-submenu').classList.toggle('active');
+        e.currentTarget.querySelector('.store-arrow').classList.toggle('rotate');
+    });
+
+    // Handle Refresh & URL
+    window.onload = () => {
+        const params = new URLSearchParams(window.location.search);
+        const page = params.get('page');
+        createStars();
+        if (page) {
+            showPage(page);
+        } else {
+            startLoading();
+        }
+    };
+
+    window.onpopstate = (event) => {
+        const params = new URLSearchParams(window.location.search);
+        const page = params.get('page');
+        showPage(page || 'default');
+    };
+
+    // Efek Bintang Background
+    function createStars() {
+        const container = document.getElementById('star-container');
+        for (let i = 0; i < 40; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            const size = Math.random() * 2 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            star.style.animationDelay = (Math.random() * 5) + 's';
+            container.appendChild(star);
+        }
+    }
+</script>
+
+</body>
+</html>
