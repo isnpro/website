@@ -83,7 +83,7 @@
         <div class="hamburger-menu">
             <div class="line"></div><div class="line"></div><div class="line"></div>
         </div>
-        <div class="nav-title" id="navTitle" style="cursor: pointer;">ISNPRO MARKET</div>
+        <div class="nav-title" id="navTitle" style="cursor: pointer;">WEBSITE MARKETPLACE</div>
         <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Profil" class="nav-profile-pic" id="navbarProfilePic">
     </div>
 
@@ -98,8 +98,8 @@
     <div id="halamanBaru" class="halaman-baru">
         
         <div id="default-content">
-            <h2 style="font-size: 2rem; margin-bottom:10px;">Welcome to ISNPRO MARKET</h2>
-            <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Banner" class="welcome-image">
+            <h2 style="font-size: 2rem; margin-bottom:10px;">Welcome to Website Isnpro</h2>
+            <img src="https://api.deline.web.id/7JLp3oMozM.jpg" alt="Banner" class="welcome-image">
             <p style="margin-top: 15px;">Klik <b>garis tiga</b> (menu) untuk melihat kategori produk.</p>
 
             <div class="info-section">
@@ -472,12 +472,13 @@
             document.querySelectorAll('.sidebar-submenu a').forEach(link => link.classList.remove('active'));
 
             const targetElement = document.getElementById(pageId + '-content');
-            let pageTitle = "Isnpro Market";
+            let pageTitle = "Website Isnpro";
+
             let newUrl = window.location.pathname;
 
             if (targetElement) {
                 targetElement.style.display = 'block';
-                pageTitle = categoryMap[pageId] || "Isnpro Market";
+                pageTitle = categoryMap[pageId] || "Welcome to website isnpro";
                 
                 const h2 = targetElement.querySelector('h2');
                 if(h2) h2.innerText = pageTitle;
