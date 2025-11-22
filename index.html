@@ -12,10 +12,15 @@
     <div id="sidebar-overlay"></div>
 
     <nav id="sidebar">
-        <div class="sidebar-header-profile">
-            <img src="https://api.deline.web.id/uhxRrZLShb.jpg" alt="Profile" class="sidebar-profile-pic-large">
-            <h4 class="sidebar-market-name">ISNPRO MARKET</h4>
-        </div>
+<div class="sidebar-header-profile">
+    <img src="https://api.deline.web.id/uhxRrZLShb.jpg" alt="Profile" class="sidebar-profile-pic-large">
+    <h4 class="sidebar-market-name">ISNPRO MARKET</h4>
+    <button id="btn-sidebar-info" class="btn-sidebar-info">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        Info
+    </button>
+</div>
+
         
         <div class="sidebar-label">UTAMA</div>
         <ul class="sidebar-menu-list">
@@ -156,6 +161,21 @@
                 <div id="modalImagesWrapper"></div>
                 <button class="slider-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
             </div>
+            
+            <div id="infoModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 400px; text-align: center; align-items: center;">
+        <span class="close-modal" onclick="closeInfoModal()">&times;</span>
+        <h3 class="modal-title">Info Market</h3>
+        <hr class="page-divider" style="margin: 10px 0;">
+        
+        <div class="info-content-placeholder" style="padding: 20px; color: #ccc;">
+            <p>(Konten Info Masih Kosong)</p>
+        </div>
+
+        <button class="btn-modal btn-mc" onclick="closeInfoModal()" style="width: 100%; margin-top: 20px;">Tutup</button>
+    </div>
+</div>
+
 
             <div id="modalDetails">
                 <h3 class="modal-title" id="mTitle">Nama Produk</h3>
