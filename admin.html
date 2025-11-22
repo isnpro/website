@@ -35,8 +35,8 @@
         </div>
 
         <div id="tab-add" class="tab-content active">
-            <h3 style="text-align: center; color: #00aaff; margin-bottom: 15px;">Tambah Produk Baru</h3>
-            <p style="text-align: center; font-size: 0.8rem; color: #28a745; margin-bottom: 20px;">*Status Produk otomatis "STOCK"</p>
+            <h3 style="text-align: center; color: #00f2ff; margin-bottom: 15px;">Tambah Produk Baru</h3>
+            <p style="text-align: center; font-size: 0.8rem; color: #00c853; margin-bottom: 20px;">*Status Produk otomatis "STOCK"</p>
             
             <form id="productForm">
                 <div class="form-group">
@@ -48,7 +48,7 @@
 
                 <div class="form-group">
                     <label>Foto Produk (Min 1, Max 5)</label>
-                    <div style="border: 2px dashed #444; padding: 20px; text-align: center; border-radius: 5px;">
+                    <div style="border: 2px dashed #334155; padding: 20px; text-align: center; border-radius: 5px;">
                         <input type="file" id="imageInput" multiple accept="image/*" style="display: none;">
                         <button type="button" onclick="document.getElementById('imageInput').click()" class="btn-admin btn-secondary" style="width: auto;">Pilih Foto</button>
                     </div>
@@ -80,14 +80,14 @@
         </div>
 
         <div id="tab-edit" class="tab-content">
-            <h3 style="text-align: center; color: #ffc107; margin-bottom: 15px;">Edit Data & Status Produk</h3>
+            <h3 style="text-align: center; color: #ffab00; margin-bottom: 15px;">Edit Data & Status Produk</h3>
             <button onclick="refreshAllProducts('edit')" class="btn-admin btn-secondary" style="margin-bottom: 15px;">Refresh Data</button>
             <div id="editGrid" class="admin-product-grid">
                 </div>
         </div>
 
         <div id="tab-delete" class="tab-content">
-            <h3 style="text-align: center; color: #dc3545; margin-bottom: 15px;">Hapus Produk</h3>
+            <h3 style="text-align: center; color: #d50000; margin-bottom: 15px;">Hapus Produk</h3>
             <button onclick="refreshAllProducts('delete')" class="btn-admin btn-secondary" style="margin-bottom: 15px;">Refresh Data</button>
             <div id="deleteGrid" class="admin-product-grid">
                 </div>
@@ -95,8 +95,8 @@
     </div>
 
     <div id="editModal" class="edit-modal-overlay">
-        <div class="admin-container" style="background: #222; border: 1px solid #555; width: 100%; margin: 0;">
-            <h3 style="color: #ffc107; margin-bottom: 10px;">Edit Produk</h3>
+        <div class="admin-container" style="background: #02040a; border: 1px solid var(--primary-blue); width: 100%; margin: 0;">
+            <h3 style="color: #ffab00; margin-bottom: 10px;">Edit Produk</h3>
             <input type="hidden" id="editId">
             
             <div class="form-group">
@@ -130,6 +130,10 @@
             </div>
         </div>
     </div>
+
+    <footer class="global-footer" style="position: fixed; bottom: 0; background: rgba(0,0,0,0.8);">
+        © 2025 Isnpro Market. All rights reserved.
+    </footer>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
