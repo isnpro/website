@@ -40,20 +40,10 @@
             
             <form id="productForm">
                 <div class="form-group">
-                    <label>Kategori Utama</label>
-                    <select id="mainCategory" class="admin-select" required>
-                        <option value="">-- Pilih Menu --</option>
-                        <option value="store">Isnpro Store</option>
-                        <option value="acc">Account Game</option>
-                        <option value="joki">Joki Game</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Sub Kategori (Halaman)</label>
-                    <select id="subCategory" class="admin-select" required disabled>
+                    <label>Pilih Halaman Produk</label>
+                    <select id="pageCategory" class="admin-select" required>
                         <option value="">-- Pilih Halaman --</option>
-                    </select>
+                        </select>
                 </div>
 
                 <div class="form-group">
@@ -163,29 +153,31 @@
     const loginSection = document.getElementById('login-section');
     const dashboardSection = document.getElementById('dashboard-section');
     
-    const categoryMap = {
-        store: [
-            {id: 'sewa_bot', name: 'Sewa Bot'},
-            {id: 'topup_game', name: 'Topup Game'},
-            {id: 'script_bot', name: 'Script Bot'}
-        ],
-        acc: [
-            {id: 'acc_roblox', name: 'Akun Roblox'},
-            {id: 'acc_ml', name: 'Akun Mobile Legends'},
-            {id: 'acc_ff', name: 'Akun Free Fire'},
-            {id: 'acc_football', name: 'Akun E-Football'}
-        ],
-        joki: [
-            {id: 'joki_roblox', name: 'Joki Roblox'},
-            {id: 'joki_rank', name: 'Joki Rank'},
-            {id: 'joki_gendong', name: 'Joki Gendong'}
-        ]
-    };
+    // DATA KATEGORI (FLAT)
+    const allCategories = [
+        {id: 'sewa_bot', name: 'Sewa Bot'},
+        {id: 'script_bot', name: 'Script Bot'},
+        {id: 'topup_game', name: 'Topup Game'},
+        {id: 'acc_roblox', name: 'Akun Roblox'},
+        {id: 'acc_ml', name: 'Akun Mobile Legends'},
+        {id: 'acc_ff', name: 'Akun Free Fire'},
+        {id: 'acc_football', name: 'Akun E-Football'},
+        {id: 'joki_roblox', name: 'Joki Roblox'},
+        {id: 'joki_rank', name: 'Joki Rank'},
+        {id: 'joki_gendong', name: 'Joki Gendong'}
+    ];
 
-    // Map ID ke Nama Kategori untuk Header
+    // Map ID ke Nama (untuk tampilan di edit/hapus)
     const categoryNameMap = {};
-    Object.values(categoryMap).forEach(group => {
-        group.forEach(item => categoryNameMap[item.id] = item.name);
+    allCategories.forEach(item => categoryNameMap[item.id] = item.name);
+
+    // ISI DROPDOWN OTOMATIS
+    const pageSelect = document.getElementById('pageCategory');
+    allCategories.forEach(item => {
+        const opt = document.createElement('option');
+        opt.value = item.id;
+        opt.innerText = item.name;
+        pageSelect.appendChild(opt);
     });
 
     // --- TAB SWITCHING LOGIC ---
@@ -199,30 +191,13 @@
         if(tabName === 'add') btns[0].classList.add('active');
         if(tabName === 'edit') {
             btns[1].classList.add('active');
-            refreshAllProducts('edit'); // Auto fetch saat tab dibuka
+            refreshAllProducts('edit'); 
         }
         if(tabName === 'delete') {
             btns[2].classList.add('active');
-            refreshAllProducts('delete'); // Auto fetch saat tab dibuka
+            refreshAllProducts('delete');
         }
     }
-
-    // --- ADD PRODUCT DROPDOWN ---
-    const subCat = document.getElementById('subCategory');
-    document.getElementById('mainCategory').addEventListener('change', (e) => {
-        subCat.innerHTML = '<option value="">-- Pilih Halaman --</option>';
-        subCat.disabled = true;
-        const selected = e.target.value;
-        if(categoryMap[selected]) {
-            subCat.disabled = false;
-            categoryMap[selected].forEach(item => {
-                const opt = document.createElement('option');
-                opt.value = item.id;
-                opt.innerText = item.name;
-                subCat.appendChild(opt);
-            });
-        }
-    });
 
     // --- AUTH ---
     document.getElementById('loginForm').addEventListener('submit', (e) => {
@@ -269,10 +244,11 @@
         } else throw new Error("Gagal upload gambar");
     }
 
-    // --- TAMBAH PRODUK (AUTO STOCK) ---
+    // --- TAMBAH PRODUK ---
     async function handleProductSubmit(withPhoto) {
-        const subCatVal = subCat.value;
-        if (!subCatVal) return alert("Pilih Kategori Halaman!");
+        const subCatVal = document.getElementById('pageCategory').value;
+        if (!subCatVal) return alert("Pilih Halaman Produk!");
+        
         const name = document.getElementById('pName').value;
         const price = document.getElementById('pPrice').value;
         const desc = document.getElementById('pDesc').value;
@@ -297,7 +273,7 @@
                 description: desc,
                 whatsapp: wa,
                 images: imageUrls,
-                status: 'stock', // AUTO STOCK
+                status: 'stock',
                 timestamp: serverTimestamp()
             });
 
@@ -315,14 +291,13 @@
     document.getElementById('btnUploadPhoto').addEventListener('click', () => handleProductSubmit(true));
     document.getElementById('btnUploadNoPhoto').addEventListener('click', () => handleProductSubmit(false));
 
-    // --- NEW: FETCH ALL PRODUCTS GROUPED (EDIT/DELETE) ---
+    // --- FETCH ALL PRODUCTS GROUPED (EDIT/DELETE) ---
     window.refreshAllProducts = async function(mode) {
         const containerId = mode === 'edit' ? 'editGrid' : 'deleteGrid';
         const container = document.getElementById(containerId);
         container.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#aaa;">Memuat semua produk...</p>';
 
         try {
-            // Ambil semua produk, urutkan berdasarkan kategori
             const q = query(collection(db, "products"), orderBy("category"), orderBy("timestamp", "desc"));
             const querySnapshot = await getDocs(q);
 
@@ -340,7 +315,6 @@
                 const pid = doc.id;
                 const catId = data.category;
 
-                // Header Kategori Baru
                 if (catId !== lastCategory) {
                     const catName = categoryNameMap[catId] || catId.toUpperCase();
                     const header = document.createElement('div');
@@ -350,11 +324,9 @@
                     lastCategory = catId;
                 }
 
-                // Card Produk
                 const card = document.createElement('div');
                 card.className = 'admin-card';
                 
-                // Badge Status
                 const isOff = data.status === 'off';
                 const badgeClass = isOff ? 'status-off' : 'status-stock';
                 const badgeText = isOff ? 'OFF' : 'STOCK';
@@ -409,7 +381,6 @@
                 document.getElementById('editDesc').value = data.description;
                 document.getElementById('editWa').value = data.whatsapp;
                 
-                // Set Status Toggle
                 const currentStatus = data.status || 'stock';
                 setEditStatus(currentStatus);
 
@@ -425,14 +396,14 @@
             price: Number(document.getElementById('editPrice').value),
             description: document.getElementById('editDesc').value,
             whatsapp: document.getElementById('editWa').value,
-            status: document.getElementById('editStatusValue').value // Simpan status
+            status: document.getElementById('editStatusValue').value 
         };
 
         try {
             await updateDoc(doc(db, "products", id), updates);
             alert("Data berhasil diupdate!");
             document.getElementById('editModal').style.display = 'none';
-            refreshAllProducts('edit'); // Refresh grid
+            refreshAllProducts('edit'); 
         } catch (e) {
             alert("Gagal update: " + e.message);
         }
@@ -444,7 +415,7 @@
             try {
                 await deleteDoc(doc(db, "products", id));
                 alert("Produk dihapus.");
-                refreshAllProducts('delete'); // Refresh grid
+                refreshAllProducts('delete'); 
             } catch (e) {
                 alert("Gagal hapus: " + e.message);
             }

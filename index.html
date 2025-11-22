@@ -18,48 +18,70 @@
         </div>
         
         <div class="sidebar-label">UTAMA</div>
-        <ul class="sidebar-store-menu">
+        <ul class="sidebar-menu-list">
             <li>
-                <a href="#" id="isnpro-toggle"> 
+                <a href="#" data-page="sewa_bot"> 
                     <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Isnpro store</span>
-                    <span class="store-arrow">&gt;</span>
+                    <span>Sewa bot</span>
                 </a>
-                <ul id="isnpro-submenu" class="sidebar-submenu">
-                    <li><a href="#" data-page="sewa_bot">Sewa bot</a></li>
-                    <li><a href="#" data-page="topup_game">Topup game</a></li>
-                    <li><a href="#" data-page="script_bot">Script bot</a></li>
-                </ul>
+            </li>
+            <li>
+                <a href="#" data-page="script_bot"> 
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Script bot</span>
+                </a>
             </li>
         </ul>
 
         <div class="sidebar-label">LAINNYA</div>
-        <ul class="sidebar-store-menu">
+        <ul class="sidebar-menu-list">
             <li>
-                <a href="#" id="acc-game-2-toggle"> 
+                <a href="#" data-page="topup_game">
                     <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Account game</span>
-                    <span class="store-arrow">&gt;</span>
+                    <span>Topup game</span>
                 </a>
-                <ul id="acc-game-2-submenu" class="sidebar-submenu">
-                    <li><a href="#" data-page="acc_roblox">Akun roblox</a></li>
-                    <li><a href="#" data-page="acc_ml">Akun mobile legends</a></li>
-                    <li><a href="#" data-page="acc_ff">Akun free fire</a></li>
-                    <li><a href="#" data-page="acc_football">Akun football</a></li>
-                </ul>
             </li>
-
             <li>
-                <a href="#" id="joki-toggle"> 
+                <a href="#" data-page="acc_roblox">
                     <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Joki game</span>
-                    <span class="store-arrow">&gt;</span>
+                    <span>Akun Roblox</span>
                 </a>
-                <ul id="joki-submenu" class="sidebar-submenu">
-                    <li><a href="#" data-page="joki_roblox">Joki roblox</a></li>
-                    <li><a href="#" data-page="joki_rank">Joki rank</a></li>
-                    <li><a href="#" data-page="joki_gendong">Joki Gendong</a></li>
-                </ul>
+            </li>
+            <li>
+                <a href="#" data-page="acc_ml">
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Akun Mobile Legends</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="acc_ff">
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Akun Free Fire</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="acc_football">
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Akun E-Football</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="joki_roblox">
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Joki Roblox</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="joki_rank">
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Joki Rank</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="joki_gendong">
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Joki Gendong</span>
+                </a>
             </li>
         </ul>
 
@@ -180,12 +202,6 @@
         const prevBtn = document.querySelector('.slider-btn.prev-btn');
         const nextBtn = document.querySelector('.slider-btn.next-btn');
 
-        const toggles = [
-            { btn: document.getElementById('isnpro-toggle'), menu: document.getElementById('isnpro-submenu') },
-            { btn: document.getElementById('acc-game-2-toggle'), menu: document.getElementById('acc-game-2-submenu') },
-            { btn: document.getElementById('joki-toggle'), menu: document.getElementById('joki-submenu') }
-        ];
-
         let loadingTimeout;
         let textInterval;
         let currentSlideIndex = 0;
@@ -201,7 +217,7 @@
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
         }
 
-        // --- NAVIGATION LOGIC (OPTIMIZED) ---
+        // --- NAVIGATION LOGIC (SIMPLIFIED / NO ACCORDION) ---
         hamburger.addEventListener('click', () => {
             requestAnimationFrame(() => {
                 sidebar.classList.add('show');
@@ -218,49 +234,23 @@
                     sidebarOverlay.style.display = 'none';
                 }
             }, 300);
-            
-            // Reset Submenu
-            toggles.forEach(t => {
-                t.btn.classList.remove('active');
-                t.menu.style.maxHeight = null;
-            });
         }
 
         sidebarOverlay.addEventListener('click', closeAllSidebars);
 
-        toggles.forEach(item => {
-            if(!item.btn || !item.menu) return;
-            
-            item.btn.addEventListener('click', (e) => {
+        // Event Listener untuk link menu (langsung klik)
+        document.querySelectorAll('.sidebar-menu-list a').forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const isOpen = item.btn.classList.contains('active');
+                // Tambahkan class active untuk highlight
+                document.querySelectorAll('.sidebar-menu-list a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
 
-                // Tutup menu lain (opsional, agar rapi)
-                toggles.forEach(t => {
-                    if(t !== item) {
-                        t.btn.classList.remove('active');
-                        t.menu.style.maxHeight = null;
-                    }
-                });
-
-                if (!isOpen) {
-                    item.btn.classList.add('active');
-                    item.menu.style.maxHeight = item.menu.scrollHeight + "px";
-                } else {
-                    item.btn.classList.remove('active');
-                    item.menu.style.maxHeight = null;
-                }
-            });
-
-            item.menu.addEventListener('click', (e) => {
-                const link = e.target.closest('a');
-                if (link && link.dataset.page) {
-                    e.preventDefault();
-                    setTimeout(() => {
-                        closeAllSidebars();
-                        showPage(link.dataset.page);
-                    }, 150);
-                }
+                const pageId = link.dataset.page;
+                setTimeout(() => {
+                    closeAllSidebars();
+                    if(pageId) showPage(pageId);
+                }, 150);
             });
         });
 
@@ -370,7 +360,6 @@
             navbar.classList.add('show');
             defaultContent.style.display = 'none';
             allPageContent.forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.sidebar-submenu a').forEach(link => link.classList.remove('active'));
 
             const targetElement = document.getElementById(pageId + '-content');
             let pageTitle = "Website Isnpro";
@@ -381,8 +370,6 @@
                 pageTitle = categoryMap[pageId] || "Welcome to website isnpro";
                 const h2 = targetElement.querySelector('h2'); if(h2) h2.innerText = pageTitle;
                 newUrl = '?page=' + pageId;
-                const activeLink = document.querySelector(`[data-page="${pageId}"]`);
-                if(activeLink) activeLink.classList.add('active');
                 loadProducts(pageId);
             } else {
                 defaultContent.style.display = 'block';
