@@ -121,7 +121,7 @@ body {
     margin-bottom: 10px;
 }
 .sidebar-market-name { 
-    font-size: 1.2rem; margin: 0; font-weight: bold; color: #333; 
+    font-size: 1.2rem; margin: 0; font-weight: bold; color: #333; text-transform: uppercase; letter-spacing: 1px;
 }
 
 .sidebar-label {
@@ -268,7 +268,7 @@ body {
 .info-text { font-size: 0.9rem; line-height: 1.8; margin: 0; color: #ccc; }
 
 /* =========================================
-   5. PRODUCT GRID & CARD (UPDATED - SQUARE)
+   5. PRODUCT GRID & CARD
    ========================================= */
 .product-grid-placeholder {
     display: grid;
@@ -288,7 +288,7 @@ body {
     transition: all 0.3s ease;
     height: 100%;
     box-sizing: border-box;
-    position: relative;
+    position: relative; /* Penting untuk posisi badge */
     overflow: hidden;
 }
 .product-card:hover {
@@ -301,8 +301,8 @@ body {
 /* GAMBAR KOTAK (1:1) */
 .card-img {
     width: 100%;
-    aspect-ratio: 1 / 1; /* Rasio 1:1 */
-    object-fit: cover;   /* Crop agar penuh */
+    aspect-ratio: 1 / 1; 
+    object-fit: cover;  
     border-radius: 8px;
     margin-bottom: 12px;
     background-color: #000;
@@ -334,6 +334,8 @@ body {
     flex-grow: 1;
     line-height: 1.4;
 }
+
+/* TOMBOL BELI / HABIS */
 .btn-info {
     background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
@@ -348,15 +350,55 @@ body {
 }
 .btn-info:hover { opacity: 0.9; }
 
+/* Styles untuk tombol habis */
+.btn-habis {
+    background: #6c757d !important; /* Warna Abu-abu */
+    color: #ccc !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+    background-image: none !important; /* Hapus gradien */
+}
+
+/* --- FITUR STATUS BADGE (STOCK/OFF) --- */
+.status-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+    z-index: 5;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.status-stock {
+    background-color: #28a745; /* Hijau */
+    border: 1px solid #1e7e34;
+}
+
+.status-off {
+    background-color: #dc3545; /* Merah */
+    border: 1px solid #bd2130;
+}
+
+/* Efek Off Stock */
+.product-card.is-off .card-img {
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
 /* =========================================
-   6. PUBLIC MODAL / INFO (UPDATED - FLEXIBLE)
+   6. PUBLIC MODAL / INFO
    ========================================= */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.9); z-index: 2000;
-    display: none; justify-content: center; align-items: flex-start; /* Mulai dari atas agar scroll enak */
+    display: none; justify-content: center; align-items: flex-start; 
     padding: 20px; box-sizing: border-box;
-    overflow-y: auto; /* Scroll aktif */
+    overflow-y: auto; 
     backdrop-filter: blur(5px);
 }
 
@@ -367,9 +409,8 @@ body {
     width: 100%; max-width: 500px;
     padding: 25px;
     position: relative;
-    margin-top: 20px; /* Jarak dari atas */
+    margin-top: 20px; 
     margin-bottom: 20px;
-    /* Height auto agar mengikuti konten */
     height: auto; 
     box-shadow: 0 20px 50px rgba(0,0,0,0.8);
     display: flex;
@@ -387,11 +428,10 @@ body {
 }
 .close-modal:hover { background: #dc3545; }
 
-/* SLIDER FLEKSIBEL */
 .slider-container {
     position: relative; 
     width: 100%; 
-    height: auto; /* Tinggi mengikuti gambar */
+    height: auto; 
     min-height: 200px; 
     background: transparent; 
     border-radius: 10px; 
@@ -403,8 +443,8 @@ body {
 
 .slider-img {
     width: 100%; 
-    height: auto;     /* Tinggi otomatis */
-    max-height: 70vh; /* Batas maksimal agar tidak terlalu panjang di HP */
+    height: auto;     
+    max-height: 70vh; 
     object-fit: contain; 
     display: none;
     border-radius: 8px;
@@ -438,7 +478,7 @@ body {
 .btn-mc { background: linear-gradient(to right, #ffc107, #e0a800); color: #222; }
 
 /* =========================================
-   7. ADMIN PANEL STYLES (NEW TABS & GRID)
+   7. ADMIN PANEL STYLES
    ========================================= */
 .admin-container { 
     width: 95%; max-width: 800px; margin: 40px auto; 
@@ -508,7 +548,7 @@ body {
 .tab-content { display: none; animation: fadeIn 0.3s; }
 .tab-content.active { display: block; }
 
-/* ADMIN PRODUCT GRID (EDIT/DELETE) */
+/* ADMIN PRODUCT GRID (GROUPED) */
 .admin-product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -532,6 +572,23 @@ body {
 }
 .admin-card p { font-size: 0.8rem; color: #00ff88; margin-bottom: 8px; margin-top: 0; }
 
+/* Header Kategori di Grid Admin */
+.admin-category-header {
+    grid-column: 1 / -1; 
+    background: rgba(0, 170, 255, 0.15);
+    color: #00aaff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 4px solid #00aaff;
+    display: flex;
+    align-items: center;
+}
+
 .btn-edit-item { 
     background: #ffc107; color: black; width: 100%; 
     padding: 6px; border: none; border-radius: 4px; 
@@ -549,4 +606,33 @@ body {
     background: rgba(0,0,0,0.9); z-index: 3000;
     display: none; justify-content: center; align-items: center; padding: 20px;
     backdrop-filter: blur(5px);
+}
+
+/* Status Toggle Button Group */
+.status-toggle-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+.btn-toggle {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #555;
+    background: #222;
+    color: #aaa;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.btn-toggle:hover { background: #333; }
+.btn-toggle.active-stock {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+.btn-toggle.active-off {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
 }

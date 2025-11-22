@@ -14,7 +14,7 @@
     <nav id="sidebar">
         <div class="sidebar-header-profile">
             <img src="https://api.deline.web.id/uhxRrZLShb.jpg" alt="Profile" class="sidebar-profile-pic-large">
-            <h4 class="sidebar-market-name">Isnpro market</h4>
+            <h4 class="sidebar-market-name">ISNPRO MARKET</h4>
         </div>
         
         <div class="sidebar-label">UTAMA</div>
@@ -98,7 +98,7 @@
     <div id="halamanBaru" class="halaman-baru">
         
         <div id="default-content">
-            <h2 style="font-size: 2rem; margin-bottom:10px;">Welcome to website Isnpro</h2>
+            <h2 style="font-size: 2rem; margin-bottom:10px;">Welcome to ISNPRO MARKET</h2>
             <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Banner" class="welcome-image">
             <p style="margin-top: 15px;">Klik <b>garis tiga</b> (menu) untuk melihat kategori produk.</p>
 
@@ -214,7 +214,6 @@
         import { getFirestore, collection, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
-            // 🔴 PASTE CONFIG FIREBASE DI SINI
             apiKey: "AIzaSyBq7KGW5JMF6CwsIfx49vfL2K--B8RO-pQ",
             authDomain: "website-jb-24a86.firebaseapp.com",
             projectId: "website-jb-24a86",
@@ -238,7 +237,7 @@
         const defaultContent = document.getElementById('default-content');
         const allPageContent = document.querySelectorAll('.page-content');
         const productModal = document.getElementById('productModal');
-        const modalImagesWrapper = document.getElementById('modalImagesWrapper'); // Diperlukan untuk slider
+        const modalImagesWrapper = document.getElementById('modalImagesWrapper'); 
         const prevBtn = document.querySelector('.slider-btn.prev-btn');
         const nextBtn = document.querySelector('.slider-btn.next-btn');
 
@@ -254,14 +253,12 @@
         let currentSlideIndex = 0;
         let currentModalImages = [];
         
-        // Mapping Kategori untuk Judul Halaman
         const categoryMap = {
             'sewa_bot': 'Halaman Sewa Bot', 'topup_game': 'Halaman Topup Game', 'script_bot': 'Halaman Script Bot',
             'acc_roblox': 'Jual Akun Roblox', 'acc_ml': 'Jual Akun Mobile Legends', 'acc_ff': 'Jual Akun Free Fire', 'acc_football': 'Jual Akun E-Football',
             'joki_roblox': 'Jasa Joki Roblox', 'joki_rank': 'Jasa Joki Rank (ML/FF)', 'joki_gendong': 'Jasa Joki Gendong',
         };
 
-        // Fungsi Format Rupiah
         function formatRupiah(number) {
             return new Intl.NumberFormat('id-ID', {
                 style: 'currency',
@@ -270,8 +267,7 @@
             }).format(number);
         }
 
-
-        // --- FUNGSI LOAD PRODUK DARI FIREBASE ---
+        // --- FUNGSI LOAD PRODUK DARI FIREBASE (UPDATED) ---
         async function loadProducts(categoryId) {
             const container = document.querySelector(`#${categoryId}-content .product-grid-placeholder`);
             if (!container) return;
@@ -279,7 +275,6 @@
             container.innerHTML = '<div class="empty-slot">Memuat produk...</div>';
 
             try {
-                // Perhatikan: query dan orderBy sudah benar
                 const q = query(
                     collection(db, "products"), 
                     where("category", "==", categoryId),
@@ -293,40 +288,51 @@
                     return;
                 }
 
-                container.innerHTML = ''; // Clear loading
+                container.innerHTML = ''; 
 
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
-                    
-                    // Format Rupiah menggunakan fungsi baru
                     const priceFormatted = formatRupiah(data.price);
                     
+                    // LOGIKA STATUS
+                    const isOff = data.status === 'off';
+                    const badgeClass = isOff ? 'status-off' : 'status-stock';
+                    const badgeText = isOff ? 'OFF STOCK' : 'STOCK';
+                    const cardClassAdd = isOff ? 'is-off' : '';
+                    
+                    // LOGIKA TOMBOL (Tambahkan class btn-habis jika off)
+                    const btnClass = isOff ? 'btn-info btn-habis' : 'btn-info';
+                    const btnText = isOff ? 'HABIS' : 'BELI';
+                    const btnDisabled = isOff ? 'disabled' : '';
+
                     const card = document.createElement('div');
-                    card.className = 'product-card';
+                    card.className = `product-card ${cardClassAdd}`;
+                    
                     card.innerHTML = `
+                        <div class="status-badge ${badgeClass}">${badgeText}</div>
                         <img src="${data.images[0]}" alt="${data.name}" class="card-img">
                         <div class="card-title">${data.name}</div>
                         <div class="card-price">${priceFormatted}</div>
                         <div class="card-desc-short">${data.description.substring(0, 50)}...</div>
-                        <button class="btn-info">BELI</button>
+                        <button class="${btnClass}" ${btnDisabled}>
+                            ${btnText}
+                        </button>
                     `;
 
-                    // Tambahkan ID ke data untuk mempermudah identifikasi
                     const productData = { id: doc.id, ...data }; 
                     card.querySelector('.btn-info').addEventListener('click', () => {
-                        openModal(productData);
+                        if(!isOff) openModal(productData);
                     });
+                    
+                    // Klik gambar tetap bisa membuka detail (opsional)
+                    card.querySelector('.card-img').addEventListener('click', () => openModal(productData));
 
                     container.appendChild(card);
                 });
 
             } catch (error) {
                 console.error("Error:", error);
-                if(error.message.includes("requires an index")) {
-                    container.innerHTML = '<div class="empty-slot" style="color:red">Error: Index Firestore belum dibuat (Cek Console).</div>';
-                } else {
-                    container.innerHTML = '<div class="empty-slot">Gagal memuat data.</div>';
-                }
+                container.innerHTML = '<div class="empty-slot">Gagal memuat data.</div>';
             }
         }
 
@@ -340,10 +346,8 @@
             document.getElementById('mPrice').innerText = priceFormatted;
             document.getElementById('mDesc').innerText = data.description;
             
-            // Format WA Number
             const waNumber = data.whatsapp.startsWith('62') ? data.whatsapp : '62' + data.whatsapp;
 
-            // Gambar Slider
             modalImagesWrapper.innerHTML = '';
             data.images.forEach((imgUrl, index) => {
                 const img = document.createElement('img');
@@ -352,9 +356,7 @@
                 modalImagesWrapper.appendChild(img);
             });
             
-            // Tampilkan/Sembunyikan tombol slider
             const hasMultipleImages = data.images.length > 1 && data.images[0] !== "https://placehold.co/400x400/222/white?text=No+Image";
-
             if (hasMultipleImages) {
                 prevBtn.style.display = 'block';
                 nextBtn.style.display = 'block';
@@ -362,7 +364,6 @@
                 prevBtn.style.display = 'none';
                 nextBtn.style.display = 'none';
             }
-
 
             // Tombol Beli Langsung (Chat Penjual)
             const btnDirect = document.getElementById('btnBuyDirect');
@@ -375,7 +376,6 @@
             const btnMC = document.getElementById('btnBuyMC');
             const textMC = `Min saya ingin membeli "${data.name}" harganya "${priceFormatted}" dan penjualnya adalah "wa.me/${waNumber}"`;
             btnMC.onclick = () => {
-                // Ganti dengan nomor Admin
                 window.open(`https://wa.me/628988685425?text=${encodeURIComponent(textMC)}`, '_blank'); 
             };
 
@@ -389,7 +389,6 @@
         window.moveSlide = function(n) {
             if (currentModalImages.length <= 1) return;
             const images = document.querySelectorAll('.slider-img');
-            // Hapus class active dari slide saat ini
             if (images[currentSlideIndex]) {
                 images[currentSlideIndex].classList.remove('active');
             }
@@ -398,7 +397,6 @@
             if (currentSlideIndex >= images.length) currentSlideIndex = 0;
             if (currentSlideIndex < 0) currentSlideIndex = images.length - 1;
             
-            // Tambahkan class active ke slide baru
             if (images[currentSlideIndex]) {
                 images[currentSlideIndex].classList.add('active');
             }
@@ -471,7 +469,6 @@
             defaultContent.style.display = 'none';
             allPageContent.forEach(el => el.style.display = 'none');
 
-            // Hapus status 'active' dari semua link
             document.querySelectorAll('.sidebar-submenu a').forEach(link => link.classList.remove('active'));
 
             const targetElement = document.getElementById(pageId + '-content');
@@ -480,22 +477,18 @@
 
             if (targetElement) {
                 targetElement.style.display = 'block';
-                // Gunakan categoryMap untuk mendapatkan judul yang benar
                 pageTitle = categoryMap[pageId] || "Isnpro Market";
                 
-                // Set judul H2 di halaman
                 const h2 = targetElement.querySelector('h2');
                 if(h2) h2.innerText = pageTitle;
 
                 newUrl = '?page=' + pageId;
                 
-                // Tambahkan status 'active' ke link yang sesuai di sidebar
                 const activeLink = document.querySelector(`[data-page="${pageId}"]`);
                 if(activeLink) {
                     activeLink.classList.add('active');
                 }
 
-                // Load Data Produk
                 loadProducts(pageId);
             } else {
                 defaultContent.style.display = 'block';
@@ -529,7 +522,6 @@
             }, 500);
         }
 
-        // Handle Refresh & URL
         window.onload = () => {
             const params = new URLSearchParams(window.location.search);
             const page = params.get('page');

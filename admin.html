@@ -5,20 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Isnpro Market</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Gaya Khusus Admin Internal */
-        .admin-container { max-width: 700px; margin: 50px auto; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 15px; backdrop-filter: blur(10px); }
-        .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; margin-bottom: 5px; color: #00aaff; font-weight: bold; }
-        .admin-input, .admin-select, .admin-textarea { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #444; background: #222; color: white; box-sizing: border-box; }
-        .btn-admin { width: 100%; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
-        .btn-primary { background: #007bff; color: white; }
-        .btn-secondary { background: #6c757d; color: white; }
-        .btn-danger { background: #dc3545; color: white; margin-bottom: 20px; }
-        .preview-container { display: flex; gap: 10px; overflow-x: auto; margin-top: 10px; }
-        .preview-img { width: 60px; height: 60px; object-fit: cover; border-radius: 5px; border: 1px solid #555; }
-        .hide { display: none !important; }
-    </style>
 </head>
 <body>
 
@@ -50,6 +36,8 @@
 
         <div id="tab-add" class="tab-content active">
             <h3 style="text-align: center; color: #00aaff; margin-bottom: 15px;">Tambah Produk Baru</h3>
+            <p style="text-align: center; font-size: 0.8rem; color: #28a745; margin-bottom: 20px;">*Status Produk otomatis "STOCK"</p>
+            
             <form id="productForm">
                 <div class="form-group">
                     <label>Kategori Utama</label>
@@ -73,7 +61,6 @@
                     <div style="border: 2px dashed #444; padding: 20px; text-align: center; border-radius: 5px;">
                         <input type="file" id="imageInput" multiple accept="image/*" style="display: none;">
                         <button type="button" onclick="document.getElementById('imageInput').click()" class="btn-admin btn-secondary" style="width: auto;">Pilih Foto</button>
-                        <p style="font-size: 0.8rem; margin-top: 5px; color: #aaa;">Biarkan kosong untuk "Non Foto"</p>
                     </div>
                     <div id="previewArea" class="preview-container"></div>
                 </div>
@@ -103,29 +90,17 @@
         </div>
 
         <div id="tab-edit" class="tab-content">
-            <h3 style="text-align: center; color: #ffc107; margin-bottom: 15px;">Edit Data Produk</h3>
-            <div class="form-group">
-                <label>Pilih Kategori untuk Diedit:</label>
-                <select id="editCategorySelect" class="admin-select">
-                    <option value="">-- Pilih Kategori --</option>
-                    </select>
-            </div>
+            <h3 style="text-align: center; color: #ffc107; margin-bottom: 15px;">Edit Data & Status Produk</h3>
+            <button onclick="refreshAllProducts('edit')" class="btn-admin btn-secondary" style="margin-bottom: 15px;">Refresh Data</button>
             <div id="editGrid" class="admin-product-grid">
-                <p style="grid-column: 1/-1; text-align: center; color: #777;">Pilih kategori untuk memunculkan produk.</p>
-            </div>
+                </div>
         </div>
 
         <div id="tab-delete" class="tab-content">
             <h3 style="text-align: center; color: #dc3545; margin-bottom: 15px;">Hapus Produk</h3>
-            <div class="form-group">
-                <label>Pilih Kategori untuk Dihapus:</label>
-                <select id="deleteCategorySelect" class="admin-select">
-                    <option value="">-- Pilih Kategori --</option>
-                    </select>
-            </div>
+            <button onclick="refreshAllProducts('delete')" class="btn-admin btn-secondary" style="margin-bottom: 15px;">Refresh Data</button>
             <div id="deleteGrid" class="admin-product-grid">
-                <p style="grid-column: 1/-1; text-align: center; color: #777;">Pilih kategori untuk memunculkan produk.</p>
-            </div>
+                </div>
         </div>
     </div>
 
@@ -133,6 +108,16 @@
         <div class="admin-container" style="background: #222; border: 1px solid #555; width: 100%; margin: 0;">
             <h3 style="color: #ffc107; margin-bottom: 10px;">Edit Produk</h3>
             <input type="hidden" id="editId">
+            
+            <div class="form-group">
+                <label>Status Produk</label>
+                <div class="status-toggle-group">
+                    <button type="button" id="btnSetStock" class="btn-toggle" onclick="setEditStatus('stock')">READY STOCK</button>
+                    <button type="button" id="btnSetOff" class="btn-toggle" onclick="setEditStatus('off')">OFF STOCK</button>
+                </div>
+                <input type="hidden" id="editStatusValue">
+            </div>
+
             <div class="form-group">
                 <label>Nama Produk</label>
                 <input type="text" id="editName" class="admin-input">
@@ -159,10 +144,9 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs, orderBy, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs, orderBy, doc, getDoc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
-        // 🔴 PASTIKAN CONFIG INI SESUAI MILIK ANDA
         apiKey: "AIzaSyBq7KGW5JMF6CwsIfx49vfL2K--B8RO-pQ",
         authDomain: "website-jb-24a86.firebaseapp.com",
         projectId: "website-jb-24a86",
@@ -179,7 +163,6 @@
     const loginSection = document.getElementById('login-section');
     const dashboardSection = document.getElementById('dashboard-section');
     
-    // Category Map for Select Options
     const categoryMap = {
         store: [
             {id: 'sewa_bot', name: 'Sewa Bot'},
@@ -199,10 +182,10 @@
         ]
     };
 
-    // Flatten categories for Edit/Delete dropdowns
-    const allCategories = [];
+    // Map ID ke Nama Kategori untuk Header
+    const categoryNameMap = {};
     Object.values(categoryMap).forEach(group => {
-        group.forEach(item => allCategories.push(item));
+        group.forEach(item => categoryNameMap[item.id] = item.name);
     });
 
     // --- TAB SWITCHING LOGIC ---
@@ -211,15 +194,20 @@
         document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
         
         document.getElementById('tab-' + tabName).classList.add('active');
-        // Find button that calls this and make active (simple way)
+        
         const btns = document.querySelectorAll('.tab-btn');
         if(tabName === 'add') btns[0].classList.add('active');
-        if(tabName === 'edit') btns[1].classList.add('active');
-        if(tabName === 'delete') btns[2].classList.add('active');
+        if(tabName === 'edit') {
+            btns[1].classList.add('active');
+            refreshAllProducts('edit'); // Auto fetch saat tab dibuka
+        }
+        if(tabName === 'delete') {
+            btns[2].classList.add('active');
+            refreshAllProducts('delete'); // Auto fetch saat tab dibuka
+        }
     }
 
-    // --- POPULATE DROPDOWNS ---
-    // 1. Main Add Dropdown
+    // --- ADD PRODUCT DROPDOWN ---
     const subCat = document.getElementById('subCategory');
     document.getElementById('mainCategory').addEventListener('change', (e) => {
         subCat.innerHTML = '<option value="">-- Pilih Halaman --</option>';
@@ -236,33 +224,14 @@
         }
     });
 
-    // 2. Edit & Delete Dropdowns
-    const editSelect = document.getElementById('editCategorySelect');
-    const deleteSelect = document.getElementById('deleteCategorySelect');
-
-    function populateAdminDropdowns() {
-        allCategories.forEach(cat => {
-            const opt1 = document.createElement('option');
-            opt1.value = cat.id; opt1.innerText = cat.name;
-            editSelect.appendChild(opt1);
-
-            const opt2 = document.createElement('option');
-            opt2.value = cat.id; opt2.innerText = cat.name;
-            deleteSelect.appendChild(opt2);
-        });
-    }
-    populateAdminDropdowns();
-
-    // --- AUTH FUNCTIONS ---
+    // --- AUTH ---
     document.getElementById('loginForm').addEventListener('submit', (e) => {
         e.preventDefault();
         const email = document.getElementById('email').value;
         const pass = document.getElementById('password').value;
         signInWithEmailAndPassword(auth, email, pass).catch(err => alert("Login Gagal: " + err.message));
     });
-
     document.getElementById('btnLogout').addEventListener('click', () => signOut(auth));
-
     onAuthStateChanged(auth, (user) => {
         if (user) {
             loginSection.classList.add('hide');
@@ -273,7 +242,7 @@
         }
     });
 
-    // --- FITUR UPLOAD KE ACEIMG (SAMA SEPERTI SEBELUMNYA) ---
+    // --- IMAGE UPLOAD ---
     const imageInput = document.getElementById('imageInput');
     const previewArea = document.getElementById('previewArea');
     let filesToUpload = [];
@@ -300,7 +269,7 @@
         } else throw new Error("Gagal upload gambar");
     }
 
-    // --- TAB 1: FUNGSI TAMBAH PRODUK ---
+    // --- TAMBAH PRODUK (AUTO STOCK) ---
     async function handleProductSubmit(withPhoto) {
         const subCatVal = subCat.value;
         if (!subCatVal) return alert("Pilih Kategori Halaman!");
@@ -328,6 +297,7 @@
                 description: desc,
                 whatsapp: wa,
                 images: imageUrls,
+                status: 'stock', // AUTO STOCK
                 timestamp: serverTimestamp()
             });
 
@@ -345,94 +315,107 @@
     document.getElementById('btnUploadPhoto').addEventListener('click', () => handleProductSubmit(true));
     document.getElementById('btnUploadNoPhoto').addEventListener('click', () => handleProductSubmit(false));
 
-
-    // --- FETCH PRODUCTS HELPER ---
-    async function fetchProductsByCategory(catId, containerId, type) {
+    // --- NEW: FETCH ALL PRODUCTS GROUPED (EDIT/DELETE) ---
+    window.refreshAllProducts = async function(mode) {
+        const containerId = mode === 'edit' ? 'editGrid' : 'deleteGrid';
         const container = document.getElementById(containerId);
-        container.innerHTML = '<p style="grid-column:1/-1;text-align:center">Memuat data...</p>';
-        
-        try {
-            const q = query(collection(db, "products"), where("category", "==", catId), orderBy("timestamp", "desc"));
-            const snap = await getDocs(q);
-            container.innerHTML = '';
+        container.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#aaa;">Memuat semua produk...</p>';
 
-            if (snap.empty) {
-                container.innerHTML = '<p style="grid-column:1/-1;text-align:center">Tidak ada produk di kategori ini.</p>';
+        try {
+            // Ambil semua produk, urutkan berdasarkan kategori
+            const q = query(collection(db, "products"), orderBy("category"), orderBy("timestamp", "desc"));
+            const querySnapshot = await getDocs(q);
+
+            container.innerHTML = '';
+            
+            if(querySnapshot.empty) {
+                container.innerHTML = '<p style="grid-column:1/-1;text-align:center;">Tidak ada data produk.</p>';
                 return;
             }
 
-            snap.forEach(docSnap => {
-                const data = docSnap.data();
-                const pid = docSnap.id;
-                
+            let lastCategory = '';
+
+            querySnapshot.forEach(doc => {
+                const data = doc.data();
+                const pid = doc.id;
+                const catId = data.category;
+
+                // Header Kategori Baru
+                if (catId !== lastCategory) {
+                    const catName = categoryNameMap[catId] || catId.toUpperCase();
+                    const header = document.createElement('div');
+                    header.className = 'admin-category-header';
+                    header.innerText = catName;
+                    container.appendChild(header);
+                    lastCategory = catId;
+                }
+
+                // Card Produk
                 const card = document.createElement('div');
                 card.className = 'admin-card';
-                // Tag Category Badge
-                const tag = `<div style="font-size:0.7rem; background:#007bff; color:white; display:inline-block; padding:2px 6px; border-radius:4px; margin-bottom:5px;">${catId}</div>`;
                 
+                // Badge Status
+                const isOff = data.status === 'off';
+                const badgeClass = isOff ? 'status-off' : 'status-stock';
+                const badgeText = isOff ? 'OFF' : 'STOCK';
+
                 let btnAction = '';
-                if(type === 'edit') {
+                if(mode === 'edit') {
                     btnAction = `<button class="btn-edit-item" onclick="window.openEditModal('${pid}')">EDIT</button>`;
                 } else {
-                    btnAction = `<button class="btn-delete-item" onclick="window.deleteProduct('${pid}', '${catId}')">DELETE</button>`;
+                    btnAction = `<button class="btn-delete-item" onclick="window.deleteProduct('${pid}')">HAPUS</button>`;
                 }
 
                 card.innerHTML = `
+                    <div class="status-badge ${badgeClass}">${badgeText}</div>
                     <img src="${data.images[0]}" alt="img">
-                    ${tag}
                     <h4>${data.name}</h4>
                     <p>Rp ${data.price}</p>
                     ${btnAction}
                 `;
                 container.appendChild(card);
             });
+
         } catch (e) {
             console.error(e);
-            container.innerHTML = '<p style="color:red; grid-column:1/-1">Error loading data.</p>';
+            container.innerHTML = '<p style="color:red; grid-column:1/-1">Error: ' + e.message + '</p>';
         }
     }
 
-    // Event Listeners for Dropdowns
-    editSelect.addEventListener('change', (e) => {
-        if(e.target.value) fetchProductsByCategory(e.target.value, 'editGrid', 'edit');
-    });
+    // --- EDIT LOGIC ---
+    window.setEditStatus = function(status) {
+        document.getElementById('editStatusValue').value = status;
+        const btnStock = document.getElementById('btnSetStock');
+        const btnOff = document.getElementById('btnSetOff');
+        
+        if(status === 'stock') {
+            btnStock.classList.add('active-stock');
+            btnOff.classList.remove('active-off');
+        } else {
+            btnStock.classList.remove('active-stock');
+            btnOff.classList.add('active-off');
+        }
+    }
 
-    deleteSelect.addEventListener('change', (e) => {
-        if(e.target.value) fetchProductsByCategory(e.target.value, 'deleteGrid', 'delete');
-    });
-
-    // --- TAB 2: LOGIC EDIT ---
-    // Global function agar bisa dipanggil dari onclick HTML string
     window.openEditModal = async function(id) {
-        // Cari data produk di DOM atau fetch ulang (disini fetch single doc agar akurat)
         try {
-            // Kita cari manual dari cache editGrid atau query doc ref
-            // Cara cepat: cari element di grid edit? Tidak bisa ambil data lengkap
-            // Fetch single doc
             const docRef = doc(db, "products", id);
-            // (Jika pakai modular v9, getDoc harus diimport, tapi kita bisa pakai cara lain:
-            // Iterate data yang sudah ada di memori jika disimpan, tapi fetch single aman)
-            // Import getDoc dulu di atas? Atau manfaatkan event listener closure?
-            // Karena "window.openEditModal" global, kita perlu import getDoc.
-            // Solusi: Tambahkan getDoc di import.
-        } catch (e) {}
-    }
-    
-    // Re-importing getDoc for Edit logic
-    import { getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+            const snap = await getDoc(docRef);
+            if(snap.exists()) {
+                const data = snap.data();
+                document.getElementById('editId').value = id;
+                document.getElementById('editName').value = data.name;
+                document.getElementById('editPrice').value = data.price;
+                document.getElementById('editDesc').value = data.description;
+                document.getElementById('editWa').value = data.whatsapp;
+                
+                // Set Status Toggle
+                const currentStatus = data.status || 'stock';
+                setEditStatus(currentStatus);
 
-    window.openEditModal = async function(id) {
-        const docRef = doc(db, "products", id);
-        const snap = await getDoc(docRef);
-        if(snap.exists()) {
-            const data = snap.data();
-            document.getElementById('editId').value = id;
-            document.getElementById('editName').value = data.name;
-            document.getElementById('editPrice').value = data.price;
-            document.getElementById('editDesc').value = data.description;
-            document.getElementById('editWa').value = data.whatsapp;
-            document.getElementById('editModal').style.display = 'flex';
-        }
+                document.getElementById('editModal').style.display = 'flex';
+            }
+        } catch(e) { alert("Error fetch: " + e.message); }
     };
 
     window.saveEdit = async function() {
@@ -441,35 +424,34 @@
             name: document.getElementById('editName').value,
             price: Number(document.getElementById('editPrice').value),
             description: document.getElementById('editDesc').value,
-            whatsapp: document.getElementById('editWa').value
+            whatsapp: document.getElementById('editWa').value,
+            status: document.getElementById('editStatusValue').value // Simpan status
         };
 
         try {
             await updateDoc(doc(db, "products", id), updates);
             alert("Data berhasil diupdate!");
             document.getElementById('editModal').style.display = 'none';
-            // Refresh grid
-            const currentCat = editSelect.value;
-            if(currentCat) fetchProductsByCategory(currentCat, 'editGrid', 'edit');
+            refreshAllProducts('edit'); // Refresh grid
         } catch (e) {
             alert("Gagal update: " + e.message);
         }
     };
 
-    // --- TAB 3: LOGIC DELETE ---
-    window.deleteProduct = async function(id, catId) {
+    // --- DELETE LOGIC ---
+    window.deleteProduct = async function(id) {
         if(confirm("Yakin ingin menghapus produk ini permanen?")) {
             try {
                 await deleteDoc(doc(db, "products", id));
                 alert("Produk dihapus.");
-                fetchProductsByCategory(catId, 'deleteGrid', 'delete');
+                refreshAllProducts('delete'); // Refresh grid
             } catch (e) {
                 alert("Gagal hapus: " + e.message);
             }
         }
     };
 
-    // Efek Bintang
+    // Star Animation
     function createStars() {
         const container = document.getElementById('star-container');
         for (let i = 0; i < 40; i++) {
