@@ -87,6 +87,12 @@
                     <span>Joki Gendong</span>
                 </a>
             </li>
+            <li>
+                <a href="#" data-page="apk_premium">
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Apk Premium</span>
+                </a>
+            </li>
         </ul>
 
         <ul class="sidebar-footer-menu">
@@ -151,7 +157,15 @@
         <div id="acc_football-content" class="page-content"><h2 class="page-title">Jual Akun E-Football</h2><div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari akun..."></div><hr class="page-divider"><div class="product-grid-placeholder"></div></div>
         <div id="joki_roblox-content" class="page-content"><h2 class="page-title">Jasa Joki Roblox</h2><div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari joki..."></div><hr class="page-divider"><div class="product-grid-placeholder"></div></div>
         <div id="joki_rank-content" class="page-content"><h2 class="page-title">Jasa Joki Rank (ML/FF)</h2><div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari rank..."></div><hr class="page-divider"><div class="product-grid-placeholder"></div></div>
-        <div id="joki_gendong-content" class="page-content"><h2 class="page-title">Jasa Joki Gendong</h2><div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari mabar..."></div><hr class="page-divider"><div class="product-grid-placeholder"></div></div>
+        <div id="joki_gendong-content" class="page-content"><h2 class="page-title">Jasa Joki Gendong</h2><div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari mabar..."></div><hr class="page-divider"><div class="product-grid-placeholder"></div>
+        <div id="apk_premium-content" class="page-content">
+    <h2 class="page-title">Aplikasi Premium</h2>
+    <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Cari aplikasi...">
+    </div>
+    <hr class="page-divider">
+    <div class="product-grid-placeholder"></div>
+</div></div>
         
         <footer class="global-footer">
             © 2025 Isnpro Market. All rights reserved.
@@ -262,10 +276,19 @@
         let currentModalImages = [];
         
         const categoryMap = {
-            'sewa_bot': 'Halaman Sewa Bot', 'topup_game': 'Halaman Topup Game', 'script_bot': 'Halaman Script Bot',
-            'acc_roblox': 'Jual Akun Roblox', 'acc_ml': 'Jual Akun Mobile Legends', 'acc_ff': 'Jual Akun Free Fire', 'acc_football': 'Jual Akun E-Football',
-            'joki_roblox': 'Jasa Joki Roblox', 'joki_rank': 'Jasa Joki Rank (ML/FF)', 'joki_gendong': 'Jasa Joki Gendong',
-        };
+    'sewa_bot': 'Halaman Sewa Bot', 
+    'topup_game': 'Halaman Topup Game', 
+    'script_bot': 'Halaman Script Bot',
+    'acc_roblox': 'Jual Akun Roblox', 
+    'acc_ml': 'Jual Akun Mobile Legends', 
+    'acc_ff': 'Jual Akun Free Fire', 
+    'acc_football': 'Jual Akun E-Football',
+    'joki_roblox': 'Jasa Joki Roblox', 
+    'joki_rank': 'Jasa Joki Rank (ML/FF)', 
+    'joki_gendong': 'Jasa Joki Gendong',
+    'apk_premium': 'Aplikasi Premium' 
+};
+
 
         function formatRupiah(number) {
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
