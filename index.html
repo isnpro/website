@@ -12,16 +12,15 @@
     <div id="sidebar-overlay"></div>
 
     <nav id="sidebar">
-<div class="sidebar-header-profile">
-    <img src="https://api.deline.web.id/uhxRrZLShb.jpg" alt="Profile" class="sidebar-profile-pic-large">
-    <h4 class="sidebar-market-name">ISNPRO MARKET</h4>
-    <button id="btn-sidebar-info" class="btn-sidebar-info">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-        Info
-    </button>
-</div>
+        <div class="sidebar-header-profile">
+            <img src="https://api.deline.web.id/uhxRrZLShb.jpg" alt="Profile" class="sidebar-profile-pic-large">
+            <h4 class="sidebar-market-name">ISNPRO MARKET</h4>
+            <button id="btn-sidebar-info" class="btn-sidebar-info">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                Info
+            </button>
+        </div>
 
-        
         <div class="sidebar-label">UTAMA</div>
         <ul class="sidebar-menu-list">
             <li>
@@ -162,21 +161,6 @@
                 <button class="slider-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
             </div>
             
-            <div id="infoModal" class="modal-overlay">
-    <div class="modal-content" style="max-width: 400px; text-align: center; align-items: center;">
-        <span class="close-modal" onclick="closeInfoModal()">&times;</span>
-        <h3 class="modal-title">Info Market</h3>
-        <hr class="page-divider" style="margin: 10px 0;">
-        
-        <div class="info-content-placeholder" style="padding: 20px; color: #ccc;">
-            <p>(Konten Info Masih Kosong)</p>
-        </div>
-
-        <button class="btn-modal btn-mc" onclick="closeInfoModal()" style="width: 100%; margin-top: 20px;">Tutup</button>
-    </div>
-</div>
-
-
             <div id="modalDetails">
                 <h3 class="modal-title" id="mTitle">Nama Produk</h3>
                 <div class="modal-price" id="mPrice">Rp 0</div>
@@ -190,7 +174,38 @@
         </div>
     </div>
 
-<script type="module">
+    <div id="infoModal" class="modal-overlay">
+        <div class="modal-content modal-white-theme">
+            <span class="close-modal text-dark" onclick="closeInfoModal()">&times;</span>
+            
+            <h3 class="modal-title title-dark">Informasi Isnpro</h3>
+            <hr class="page-divider divider-dark">
+            
+            <p class="info-desc-text">
+                Ini website resmi by isnpro untuk menjual kebutuhan kalian dengan harga terjangkau
+            </p>
+
+            <div class="info-btn-wrapper">
+                <a href="https://wa.me/628988685425" target="_blank" class="btn-info-link">
+                    1. Nomor Utama Admin
+                </a>
+                
+                <a href="https://whatsapp.com/channel/0029Vaxm2K6A2pL5H5lr231U" target="_blank" class="btn-info-link">
+                    2. Testimoni Isnpro
+                </a>
+
+                <a href="https://chat.whatsapp.com/JyCFZuKyryIDUVs5Hv2D7T?mode=wwt" target="_blank" class="btn-info-link">
+                    3. Group JB by Isnpro
+                </a>
+            </div>
+
+            <div class="info-copyright">
+                © creator by isnpro 22/11/2025
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -237,7 +252,7 @@
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
         }
 
-        // --- NAVIGATION LOGIC (SIMPLIFIED / NO ACCORDION) ---
+        // --- NAVIGATION LOGIC ---
         hamburger.addEventListener('click', () => {
             requestAnimationFrame(() => {
                 sidebar.classList.add('show');
@@ -246,7 +261,7 @@
             });
         });
 
-        function closeAllSidebars() {
+        window.closeAllSidebars = function() {
             sidebar.classList.remove('show');
             sidebarOverlay.style.opacity = '0';
             setTimeout(() => {
@@ -258,11 +273,10 @@
 
         sidebarOverlay.addEventListener('click', closeAllSidebars);
 
-        // Event Listener untuk link menu (langsung klik)
+        // Event Listener untuk link menu
         document.querySelectorAll('.sidebar-menu-list a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                // Tambahkan class active untuk highlight
                 document.querySelectorAll('.sidebar-menu-list a').forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
 
@@ -335,7 +349,7 @@
             }
         }
 
-        // --- MODAL LOGIC ---
+        // --- PRODUCT MODAL LOGIC ---
         window.openModal = function(data) {
             currentModalImages = data.images;
             currentSlideIndex = 0;
@@ -372,6 +386,28 @@
             if (images[currentSlideIndex]) images[currentSlideIndex].classList.add('active');
         };
         productModal.addEventListener('click', (e) => { if (e.target === productModal) closeModal(); });
+
+        // --- LOGIKA MODAL INFO ISNPRO (BARU) ---
+        const infoModal = document.getElementById('infoModal');
+        const btnSidebarInfo = document.getElementById('btn-sidebar-info');
+
+        if (btnSidebarInfo) {
+            btnSidebarInfo.addEventListener('click', (e) => {
+                e.preventDefault();
+                infoModal.style.display = 'flex';
+                closeAllSidebars();
+            });
+        }
+
+        window.closeInfoModal = function() {
+            infoModal.style.display = 'none';
+        };
+
+        infoModal.addEventListener('click', (e) => {
+            if (e.target === infoModal) {
+                closeInfoModal();
+            }
+        });
 
         // --- PAGE LOGIC ---
         function showPage(pageId) {

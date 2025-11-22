@@ -85,13 +85,13 @@ body {
 }
 #sidebar.show { transform: translateX(0); }
 
-/* --- UPDATE BAGIAN SIDEBAR HEADER --- */
+/* --- SIDEBAR HEADER --- */
 
 .sidebar-header-profile { 
-    padding: 30px 15px; /* Tambah padding biar lega */
+    padding: 30px 15px; 
     display: flex;
-    flex-direction: column; /* Susun ke bawah */
-    align-items: center;    /* Rata tengah */
+    flex-direction: column; 
+    align-items: center;    
     justify-content: center;
     background: #f8f9fa;
     border-bottom: 1px solid #e0e0e0;
@@ -99,26 +99,26 @@ body {
 }
 
 .sidebar-profile-pic-large {
-    width: 80px;           /* Perbesar ukuran foto */
+    width: 80px;           
     height: 80px;
-    border-radius: 15px;   /* Ujung tumpul (Rounded Square) */
+    border-radius: 15px;   
     border: 3px solid #007bff;
-    margin-right: 0;       /* Hapus margin kanan lama */
-    margin-bottom: 15px;   /* Jarak ke teks nama */
+    margin-right: 0;       
+    margin-bottom: 15px;   
     object-fit: cover;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .sidebar-market-name { 
     font-size: 1rem; 
-    margin: 0 0 10px 0;    /* Jarak ke tombol info */
+    margin: 0 0 10px 0;    
     font-weight: 800; 
     color: #333; 
     text-transform: uppercase; 
     letter-spacing: 0.5px;
 }
 
-/* Style Tombol Info Baru */
+/* Style Tombol Info */
 .btn-sidebar-info {
     background: transparent;
     border: 1px solid #007bff;
@@ -294,12 +294,12 @@ body {
 .product-card.is-off .card-img { filter: grayscale(100%); opacity: 0.6; }
 
 /* =========================================
-   6. PUBLIC MODAL / INFO
+   6. PUBLIC MODAL (PRODUCT)
    ========================================= */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.9); z-index: 2000;
-    display: none; justify-content: center; align-items: flex-start; 
+    display: none; justify-content: center; align-items: center; /* Updated to center */
     padding: 20px; box-sizing: border-box; overflow-y: auto; backdrop-filter: blur(5px);
 }
 .modal-content {
@@ -394,3 +394,76 @@ body {
 .btn-toggle:hover { background: #333; }
 .btn-toggle.active-stock { background: #28a745; color: white; border-color: #28a745; }
 .btn-toggle.active-off { background: #dc3545; color: white; border-color: #dc3545; }
+
+/* =========================================
+   8. INFO MODAL (WHITE THEME)
+   ========================================= */
+/* Override background menjadi Putih khusus Info Modal */
+.modal-content.modal-white-theme {
+    background-color: #ffffff !important;
+    border: 1px solid #ddd;
+    color: #333;
+    text-align: center;
+    max-width: 400px;
+}
+/* Warna tombol close menjadi gelap */
+.close-modal.text-dark {
+    color: #333;
+    background: rgba(0,0,0,0.1);
+}
+.close-modal.text-dark:hover {
+    background: #dc3545;
+    color: white;
+}
+/* Judul berwarna biru/gelap */
+.modal-title.title-dark {
+    color: #007bff;
+    margin-top: 10px;
+}
+/* Garis pembatas gelap */
+.page-divider.divider-dark {
+    background: #eee;
+    opacity: 1;
+}
+/* Teks Deskripsi */
+.info-desc-text {
+    color: #555;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+/* Wrapper Tombol */
+.info-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+/* Styling Tombol Link */
+.btn-info-link {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #007bff; /* Warna Biru */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.btn-info-link:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+/* Footer Copyright */
+.info-copyright {
+    margin-top: 25px;
+    font-size: 0.8rem;
+    color: #999;
+    font-weight: 500;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+    width: 100%;
+}
