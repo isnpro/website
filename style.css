@@ -380,6 +380,30 @@ body {
     border: 1px solid #334155;
 }
 
+        /* FIX LAG: Matikan blur berat di overlay */
+        #sidebar-overlay { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+        
+        /* LAYOUT SIDEBAR: Agar angka ada di kanan */
+        .sidebar-menu-list li a {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding-right: 15px !important;
+        }
+        
+        /* STYLE ANGKA COUNTER */
+        .category-count {
+            font-size: 0.8rem;
+            color: #00f2ff;
+            font-weight: bold;
+            background: rgba(0, 242, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            min-width: 30px;
+            text-align: center;
+        }
+
 /* Gambar Slider & Efek Zoom */
 .slider-img {
     width: 100%; 

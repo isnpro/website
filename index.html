@@ -25,50 +25,74 @@
         <ul class="sidebar-menu-list">
             <li>
                 <a href="#" data-page="sewa_bot"> 
-                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Sewa bot</span>
+                    <div style="display:flex; align-items:center;">
+                        <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                        <span>Sewa bot</span>
+                    </div>
+                    <span id="count-sewa_bot" class="category-count">[ 0 ]</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="script_bot"> 
-                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Script bot</span>
+                    <div style="display:flex; align-items:center;">
+                        <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                        <span>Script bot</span>
+                    </div>
+                    <span id="count-script_bot" class="category-count">[ 0 ]</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="topup_game">
-                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Diamond Free Fire</span>
+                    <div style="display:flex; align-items:center;">
+                        <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                        <span>Diamond Free Fire</span>
+                    </div>
+                    <span id="count-topup_game" class="category-count">[ 0 ]</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="topup_game1">
-                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Diamond Mobile Legend</span>
+                    <div style="display:flex; align-items:center;">
+                        <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                        <span>Diamond Mobile Legend</span>
+                    </div>
+                    <span id="count-topup_game1" class="category-count">[ 0 ]</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="acc_allgame">
-                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Akun Allgame</span>
+                    <div style="display:flex; align-items:center;">
+                        <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                        <span>Akun Allgame</span>
+                    </div>
+                    <span id="count-acc_allgame" class="category-count">[ 0 ]</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="joki_allgame">
-                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Joki Allgame</span>
+                    <div style="display:flex; align-items:center;">
+                        <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                        <span>Joki Allgame</span>
+                    </div>
+                    <span id="count-joki_allgame" class="category-count">[ 0 ]</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="apk_premium">
-                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Apk Premium</span>
+                    <div style="display:flex; align-items:center;">
+                        <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                        <span>Apk Premium</span>
+                    </div>
+                    <span id="count-apk_premium" class="category-count">[ 0 ]</span>
                 </a>
             </li>
             <li>
             <a href="#" data-page="campuran">
-                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
-                    <span>Produk Campuran</span>
+                    <div style="display:flex; align-items:center;">
+                        <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                        <span>Produk Campuran</span>
+                    </div>
+                    <span id="count-campuran" class="category-count">[ 0 ]</span>
                 </a>
             </li>
         </ul>
@@ -161,7 +185,6 @@
         </footer>
     </div>
 
-    <!-- MODAL PRODUK UTAMA -->
     <div id="productModal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -178,13 +201,11 @@
                 <div class="modal-desc" id="mDesc">Deskripsi...</div>
                 
                 <div class="modal-actions" id="modalActions">
-                    <!-- Tombol Beli akan digenerate oleh Javascript (Hanya 1 tombol) -->
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL INFO ISNPRO -->
     <div id="infoModal" class="modal-overlay">
         <div class="modal-content modal-white-theme">
             <span class="close-modal text-dark" onclick="closeInfoModal()">&times;</span>
@@ -228,440 +249,452 @@
         </div>
     </div>
 
-    <!-- FULLSCREEN ZOOM OVERLAY (DENGAN NAVIGASI) -->
     <div id="fullscreenImageOverlay" class="fullscreen-overlay">
         <span class="close-fullscreen">&times;</span>
         
-        <!-- TOMBOL NAVIGASI FULLSCREEN -->
         <button class="fullscreen-btn prev" onclick="moveFullscreenSlide(-1)">&#10094;</button>
         <img src="" alt="Fullscreen Image" id="fullscreenImgDisplay">
         <button class="fullscreen-btn next" onclick="moveFullscreenSlide(1)">&#10095;</button>
     </div>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyBq7KGW5JMF6CwsIfx49vfL2K--B8RO-pQ",
-        authDomain: "website-jb-24a86.firebaseapp.com",
-        projectId: "website-jb-24a86",
-        storageBucket: "website-jb-24a86.firebasestorage.app",
-        messagingSenderId: "548884046832",
-        appId: "1:548884046832:web:a2a3507c3f6935659ff335"
-    };
+        const firebaseConfig = {
+            apiKey: "AIzaSyBq7KGW5JMF6CwsIfx49vfL2K--B8RO-pQ",
+            authDomain: "website-jb-24a86.firebaseapp.com",
+            projectId: "website-jb-24a86",
+            storageBucket: "website-jb-24a86.firebasestorage.app",
+            messagingSenderId: "548884046832",
+            appId: "1:548884046832:web:a2a3507c3f6935659ff335"
+        };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-    // --- VARIABEL UI ---
-    const navbar = document.getElementById('navbar');
-    const navTitle = document.getElementById('navTitle');
-    const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebar-overlay');
-    const hamburger = document.querySelector('.hamburger-menu');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const loadingText = document.getElementById('loadingText');
-    const halamanBaru = document.getElementById('halamanBaru');
-    const defaultContent = document.getElementById('default-content');
-    const allPageContent = document.querySelectorAll('.page-content');
-    const productModal = document.getElementById('productModal');
-    const modalImagesWrapper = document.getElementById('modalImagesWrapper'); 
-    const prevBtn = document.querySelector('.slider-btn.prev-btn');
-    const nextBtn = document.querySelector('.slider-btn.next-btn');
-    const modalActions = document.getElementById('modalActions');
+        // --- VARIABEL UI ---
+        const navbar = document.getElementById('navbar');
+        const navTitle = document.getElementById('navTitle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const hamburger = document.querySelector('.hamburger-menu');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const loadingText = document.getElementById('loadingText');
+        const halamanBaru = document.getElementById('halamanBaru');
+        const defaultContent = document.getElementById('default-content');
+        const allPageContent = document.querySelectorAll('.page-content');
+        const productModal = document.getElementById('productModal');
+        const modalImagesWrapper = document.getElementById('modalImagesWrapper'); 
+        const prevBtn = document.querySelector('.slider-btn.prev-btn');
+        const nextBtn = document.querySelector('.slider-btn.next-btn');
+        const modalActions = document.getElementById('modalActions');
 
-    // --- VARIABEL UNTUK FULLSCREEN ZOOM ---
-    const fullscreenOverlay = document.getElementById('fullscreenImageOverlay');
-    const fullscreenImgDisplay = document.getElementById('fullscreenImgDisplay');
-    const closeFullscreenBtn = document.querySelector('.close-fullscreen');
-    const fsPrevBtn = document.querySelector('.fullscreen-btn.prev');
-    const fsNextBtn = document.querySelector('.fullscreen-btn.next');
+        // --- VARIABEL UNTUK FULLSCREEN ZOOM ---
+        const fullscreenOverlay = document.getElementById('fullscreenImageOverlay');
+        const fullscreenImgDisplay = document.getElementById('fullscreenImgDisplay');
+        const closeFullscreenBtn = document.querySelector('.close-fullscreen');
+        const fsPrevBtn = document.querySelector('.fullscreen-btn.prev');
+        const fsNextBtn = document.querySelector('.fullscreen-btn.next');
 
-    let loadingTimeout;
-    let textInterval;
-    let currentSlideIndex = 0;
-    let currentModalImages = [];
-    let currentFullscreenIndex = 0; 
-    
-    // --- [BARU] VARIABEL UNTUK SEARCH ---
-    let currentProductsData = []; // Menyimpan data produk mentah untuk fitur search
-    let activeCategoryId = ''; // Menyimpan id kategori yang sedang dibuka
-    
-    const categoryMap = {
-        'sewa_bot': 'Halaman Sewa Bot', 
-        'topup_game': 'Halaman diamond Free Fire', 
-        'topup_game1': 'Halaman diamond Mobile Legend', 
-        'script_bot': 'Halaman Script Bot',
-        'acc_allgame': 'Halaman Jual Akun', 
-        'joki_allgame': 'Halaman Joki Akun',
-        'apk_premium': 'Aplikasi Premium',
-        'campuran': 'Halaman Produk Campuran'
-    };
-
-    function formatRupiah(number) {
-        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
-    }
-
-    // --- NAVIGATION LOGIC ---
-    hamburger.addEventListener('click', () => {
-        requestAnimationFrame(() => {
-            sidebar.classList.add('show');
-            sidebarOverlay.style.display = 'block';
-            setTimeout(() => { sidebarOverlay.style.opacity = '1'; }, 10);
-        });
-    });
-
-    window.closeAllSidebars = function() {
-        sidebar.classList.remove('show');
-        sidebarOverlay.style.opacity = '0';
-        setTimeout(() => {
-            if(!sidebar.classList.contains('show')) {
-                sidebarOverlay.style.display = 'none';
-            }
-        }, 300);
-    }
-
-    sidebarOverlay.addEventListener('click', closeAllSidebars);
-
-    document.querySelectorAll('.sidebar-menu-list a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelectorAll('.sidebar-menu-list a').forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-
-            const pageId = link.dataset.page;
-            setTimeout(() => {
-                closeAllSidebars();
-                if(pageId) showPage(pageId);
-            }, 150);
-        });
-    });
-
-    document.getElementById('btn-home-l1').addEventListener('click', (e) => {
-        e.preventDefault(); closeAllSidebars(); startLoading(); 
-    });
-    document.getElementById('btn-exit-l1').addEventListener('click', (e) => {
-        e.preventDefault(); if(confirm("Keluar dari website?")) history.back();
-    });
-    document.getElementById('navbarProfilePic').addEventListener('click', () => alert("Website Market By Isnpro"));
-    navTitle.addEventListener('click', startLoading);
-
-    // --- [UPDATE] LOAD PRODUCTS (DATA FETCHING) ---
-    async function loadProducts(categoryId) {
-        activeCategoryId = categoryId; // Set kategori aktif
-        currentProductsData = []; // Reset data
+        let loadingTimeout;
+        let textInterval;
+        let currentSlideIndex = 0;
+        let currentModalImages = [];
+        let currentFullscreenIndex = 0; 
         
-        const container = document.querySelector(`#${categoryId}-content .product-grid-placeholder`);
-        // Ambil input search di halaman kategori ini
-        const searchInput = document.querySelector(`#${categoryId}-content .search-input`);
+        // --- DATA PENCARIAN & KATEGORI ---
+        let currentProductsData = []; 
+        let activeCategoryId = ''; 
+        
+        const categoryMap = {
+            'sewa_bot': 'Halaman Sewa Bot', 
+            'topup_game': 'Halaman Diamond Free Fire', 
+            'topup_game1': 'Halaman Diamond Mobile Legend', 
+            'script_bot': 'Halaman Script Bot',
+            'acc_allgame': 'Halaman Jual Akun', 
+            'joki_allgame': 'Halaman Joki Akun',
+            'apk_premium': 'Aplikasi Premium',
+            'campuran': 'Halaman Produk Campuran'
+        };
 
-        if (!container) return;
-        container.innerHTML = '<div class="empty-slot" style="color:#aaa;text-align:center; grid-column: 1/-1;">Memuat produk...</div>';
-
-        // Reset nilai search input saat pindah halaman
-        if(searchInput) {
-            searchInput.value = '';
-            // Hapus listener lama (optional, tapi good practice agar tidak double)
-            const newSearchInput = searchInput.cloneNode(true);
-            searchInput.parentNode.replaceChild(newSearchInput, searchInput);
-            
-            // Pasang Listener Search Baru
-            newSearchInput.addEventListener('input', (e) => handleSearch(e.target.value));
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
         }
 
-        try {
-            const q = query(collection(db, "products"), where("category", "==", categoryId), orderBy("timestamp", "desc"));
-            const querySnapshot = await getDocs(q);
+        // --- NAVIGATION LOGIC ---
+        hamburger.addEventListener('click', () => {
+            requestAnimationFrame(() => {
+                sidebar.classList.add('show');
+                sidebarOverlay.style.display = 'block';
+                setTimeout(() => { sidebarOverlay.style.opacity = '1'; }, 10);
+            });
+        });
+
+        window.closeAllSidebars = function() {
+            sidebar.classList.remove('show');
+            sidebarOverlay.style.opacity = '0';
+            setTimeout(() => {
+                if(!sidebar.classList.contains('show')) {
+                    sidebarOverlay.style.display = 'none';
+                }
+            }, 300);
+        }
+
+        sidebarOverlay.addEventListener('click', closeAllSidebars);
+
+        document.querySelectorAll('.sidebar-menu-list a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Ignore jika klik di div atau span dalam link, pastikan target yang diproses benar
+                let target = e.currentTarget;
+                document.querySelectorAll('.sidebar-menu-list a').forEach(l => l.classList.remove('active'));
+                target.classList.add('active');
+
+                const pageId = target.dataset.page;
+                setTimeout(() => {
+                    closeAllSidebars();
+                    if(pageId) showPage(pageId);
+                }, 150);
+            });
+        });
+
+        document.getElementById('btn-home-l1').addEventListener('click', (e) => {
+            e.preventDefault(); closeAllSidebars(); startLoading(); 
+        });
+        document.getElementById('btn-exit-l1').addEventListener('click', (e) => {
+            e.preventDefault(); if(confirm("Keluar dari website?")) history.back();
+        });
+        document.getElementById('navbarProfilePic').addEventListener('click', () => alert("Website Market By Isnpro"));
+        navTitle.addEventListener('click', startLoading);
+
+        // --- FUNGSI UPDATE HITUNGAN SIDEBAR ---
+        async function updateSidebarCounts() {
+            try {
+                // Ambil SEMUA produk
+                const q = query(collection(db, "products"));
+                const snapshot = await getDocs(q);
+
+                const counts = {
+                    'sewa_bot': 0, 'script_bot': 0, 'topup_game': 0,
+                    'topup_game1': 0, 'acc_allgame': 0, 'joki_allgame': 0,
+                    'apk_premium': 0, 'campuran': 0
+                };
+
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (counts[data.category] !== undefined) {
+                        counts[data.category]++;
+                    }
+                });
+
+                for (const [key, value] of Object.entries(counts)) {
+                    const badge = document.getElementById(`count-${key}`);
+                    if(badge) badge.innerText = `[ ${value} ]`;
+                }
+
+            } catch (e) {
+                console.error("Gagal menghitung kategori:", e);
+            }
+        }
+
+        // --- FETCH PRODUCTS & SEARCH ---
+        async function loadProducts(categoryId) {
+            activeCategoryId = categoryId; 
+            currentProductsData = []; 
             
-            if (querySnapshot.empty) {
-                container.innerHTML = '<div class="empty-slot" style="color:#aaa;text-align:center; grid-column: 1/-1;">Belum ada produk.</div>';
-                return;
+            const container = document.querySelector(`#${categoryId}-content .product-grid-placeholder`);
+            const searchInput = document.querySelector(`#${categoryId}-content .search-input`);
+
+            if (!container) return;
+            container.innerHTML = '<div class="empty-slot" style="color:#aaa;text-align:center; grid-column: 1/-1;">Memuat produk...</div>';
+
+            // Reset Input Search
+            if(searchInput) {
+                searchInput.value = '';
+                const newSearchInput = searchInput.cloneNode(true);
+                searchInput.parentNode.replaceChild(newSearchInput, searchInput);
+                newSearchInput.addEventListener('input', (e) => handleSearch(e.target.value));
             }
 
-            // Simpan data ke variabel global
-            querySnapshot.forEach((doc) => {
-                currentProductsData.push({ id: doc.id, ...doc.data() });
+            try {
+                const q = query(collection(db, "products"), where("category", "==", categoryId), orderBy("timestamp", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                if (querySnapshot.empty) {
+                    container.innerHTML = '<div class="empty-slot" style="color:#aaa;text-align:center; grid-column: 1/-1;">Belum ada produk.</div>';
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    currentProductsData.push({ id: doc.id, ...doc.data() });
+                });
+
+                renderProducts(currentProductsData, container);
+
+            } catch (error) {
+                console.error("Error:", error);
+                container.innerHTML = '<div class="empty-slot" style="color:red;text-align:center; grid-column: 1/-1;">Gagal memuat data.</div>';
+            }
+        }
+
+        function handleSearch(keyword) {
+            const container = document.querySelector(`#${activeCategoryId}-content .product-grid-placeholder`);
+            if(!container) return;
+            
+            const lowerKeyword = keyword.toLowerCase();
+            const filteredProducts = currentProductsData.filter(item => {
+                const nameMatch = item.name.toLowerCase().includes(lowerKeyword);
+                const descMatch = item.description.toLowerCase().includes(lowerKeyword);
+                return nameMatch || descMatch;
             });
 
-            // Render awal (tampilkan semua)
-            renderProducts(currentProductsData, container);
-
-        } catch (error) {
-            console.error("Error:", error);
-            container.innerHTML = '<div class="empty-slot" style="color:red;text-align:center; grid-column: 1/-1;">Gagal memuat data.</div>';
-        }
-    }
-
-    // --- [BARU] FUNGSI SEARCH HANDLER ---
-    function handleSearch(keyword) {
-        const container = document.querySelector(`#${activeCategoryId}-content .product-grid-placeholder`);
-        const lowerKeyword = keyword.toLowerCase();
-
-        // Filter data berdasarkan NAMA atau DESKRIPSI
-        const filteredProducts = currentProductsData.filter(item => {
-            const nameMatch = item.name.toLowerCase().includes(lowerKeyword);
-            const descMatch = item.description.toLowerCase().includes(lowerKeyword);
-            return nameMatch || descMatch;
-        });
-
-        // Tampilkan hasil filter
-        if (filteredProducts.length > 0) {
-            renderProducts(filteredProducts, container);
-        } else {
-            container.innerHTML = '<div class="empty-slot" style="color:#aaa;text-align:center; grid-column: 1/-1;">Produk tidak ditemukan.</div>';
-        }
-    }
-
-    // --- [BARU] FUNGSI RENDER PRODUCTS (PEMISAHAN LOGIKA) ---
-    function renderProducts(productList, container) {
-        container.innerHTML = ''; // Bersihkan container
-
-        productList.forEach((data) => {
-            const priceFormatted = formatRupiah(data.price);
-            const isOff = data.status === 'off';
-            const badgeClass = isOff ? 'status-off' : 'status-stock';
-            const badgeText = isOff ? 'OFF STOCK' : 'STOCK';
-            const cardClassAdd = isOff ? 'is-off' : '';
-            const btnClass = isOff ? 'btn-info btn-habis' : 'btn-info';
-            const btnText = isOff ? 'HABIS' : 'BELI';
-            const btnDisabled = isOff ? 'disabled' : '';
-
-            const card = document.createElement('div');
-            card.className = `product-card ${cardClassAdd}`;
-            
-            card.innerHTML = `
-                <div class="status-badge ${badgeClass}">${badgeText}</div>
-                <img src="${data.images[0]}" alt="${data.name}" class="card-img">
-                <div class="card-title">${data.name}</div>
-                <div class="card-price">${priceFormatted}</div>
-                <div class="card-desc-short">${data.description.substring(0, 50)}...</div>
-                <button class="${btnClass}" ${btnDisabled}>${btnText}</button>
-            `;
-
-            if(!isOff) {
-                card.querySelector('.btn-info').addEventListener('click', () => openModal(data));
-                card.querySelector('.card-img').addEventListener('click', () => openModal(data));
+            if (filteredProducts.length > 0) {
+                renderProducts(filteredProducts, container);
+            } else {
+                container.innerHTML = '<div class="empty-slot" style="color:#aaa;text-align:center; grid-column: 1/-1;">Produk tidak ditemukan.</div>';
             }
-            container.appendChild(card);
-        });
-    }
+        }
 
-    // --- LOGIKA FULLSCREEN ZOOM & SLIDER ---
-    window.openFullscreen = function(index) {
-        currentFullscreenIndex = index;
-        updateFullscreenImage();
-        fullscreenOverlay.style.display = 'flex';
-        
-        const hasMultiple = currentModalImages.length > 1;
-        fsPrevBtn.style.display = hasMultiple ? 'flex' : 'none';
-        fsNextBtn.style.display = hasMultiple ? 'flex' : 'none';
-    }
+        function renderProducts(productList, container) {
+            container.innerHTML = ''; 
 
-    function updateFullscreenImage() {
-            if (currentModalImages.length > 0) {
-                fullscreenImgDisplay.src = currentModalImages[currentFullscreenIndex];
-            }
-    }
+            productList.forEach((data) => {
+                const priceFormatted = formatRupiah(data.price);
+                const isOff = data.status === 'off';
+                const badgeClass = isOff ? 'status-off' : 'status-stock';
+                const badgeText = isOff ? 'OFF STOCK' : 'STOCK';
+                const cardClassAdd = isOff ? 'is-off' : '';
+                const btnClass = isOff ? 'btn-info btn-habis' : 'btn-info';
+                const btnText = isOff ? 'HABIS' : 'BELI';
+                const btnDisabled = isOff ? 'disabled' : '';
 
-    window.moveFullscreenSlide = function(n) {
-            if (currentModalImages.length <= 1) return;
-            currentFullscreenIndex += n;
-            if (currentFullscreenIndex >= currentModalImages.length) currentFullscreenIndex = 0;
-            if (currentFullscreenIndex < 0) currentFullscreenIndex = currentModalImages.length - 1;
+                const card = document.createElement('div');
+                card.className = `product-card ${cardClassAdd}`;
+                
+                card.innerHTML = `
+                    <div class="status-badge ${badgeClass}">${badgeText}</div>
+                    <img src="${data.images[0]}" alt="${data.name}" class="card-img">
+                    <div class="card-title">${data.name}</div>
+                    <div class="card-price">${priceFormatted}</div>
+                    <div class="card-desc-short">${data.description.substring(0, 50)}...</div>
+                    <button class="${btnClass}" ${btnDisabled}>${btnText}</button>
+                `;
+
+                if(!isOff) {
+                    card.querySelector('.btn-info').addEventListener('click', () => openModal(data));
+                    card.querySelector('.card-img').addEventListener('click', () => openModal(data));
+                }
+                container.appendChild(card);
+            });
+        }
+
+        // --- FULLSCREEN LOGIC ---
+        window.openFullscreen = function(index) {
+            currentFullscreenIndex = index;
             updateFullscreenImage();
-    }
-
-    function closeFullscreen() {
-        fullscreenOverlay.style.display = 'none';
-        setTimeout(() => { fullscreenImgDisplay.src = ''; }, 300); 
-    }
-
-    closeFullscreenBtn.addEventListener('click', closeFullscreen);
-    fullscreenOverlay.addEventListener('click', (e) => {
-        if (e.target === fullscreenOverlay) {
-            closeFullscreen();
-        }
-    });
-
-    // --- PRODUCT MODAL LOGIC ---
-    window.openModal = function(data) {
-        currentModalImages = data.images;
-        currentSlideIndex = 0;
-        
-        document.getElementById('mTitle').innerText = data.name;
-        const priceFormatted = formatRupiah(data.price);
-        document.getElementById('mPrice').innerText = priceFormatted;
-        document.getElementById('mDesc').innerText = data.description;
-        
-        let rawWa = data.whatsapp.toString().replace(/\D/g, '');
-        if (rawWa.startsWith('0')) rawWa = '62' + rawWa.substring(1);
-        
-        modalImagesWrapper.innerHTML = '';
-        data.images.forEach((imgUrl, index) => {
-            const img = document.createElement('img');
-            img.src = imgUrl; 
-            img.className = `slider-img ${index === 0 ? 'active' : ''}`;
-            img.onclick = function() { openFullscreen(index); };
-            modalImagesWrapper.appendChild(img);
-        });
-        
-        const hasMultiple = data.images.length > 1 && data.images[0] !== "https://placehold.co/400x400/222/white?text=No+Image";
-        prevBtn.style.display = hasMultiple ? 'flex' : 'none';
-        nextBtn.style.display = hasMultiple ? 'flex' : 'none';
-
-        // === LOGIKA TOMBOL BELI ===
-        modalActions.innerHTML = ''; 
-        
-        modalActions.style.display = 'flex';
-        modalActions.style.flexDirection = 'column';
-        modalActions.style.gap = '10px';
-
-        const ownerNumber = "628988685425"; 
-        
-        const trustedNumbers = [
-            "628123456789", 
-            "628999999999" 
-        ];
-
-        const textOwner = encodeURIComponent(`Halo Admin, saya ingin membeli produk *${data.name}* seharga ${priceFormatted}. Masih ready?`);
-        const textSeller = encodeURIComponent(`Halo kak, saya ingin membeli produk *${data.name}* seharga ${priceFormatted}. Masih tersedia?`);
-        const textRekber = encodeURIComponent(`Halo Admin, saya ingin request *JASA REKBER*.\n\nProduk: ${data.name}\nHarga: ${priceFormatted}\nLink Penjual: https://wa.me/${rawWa}\n\nMohon bantuannya min.`);
-
-        if (rawWa === ownerNumber) {
-            const btn = createButton("BELI SEKARANG (ADMIN)", "linear-gradient(to right, #00f2ff, #007bff)", "black");
-            btn.onclick = () => window.open(`https://wa.me/${ownerNumber}?text=${textOwner}`, '_blank');
-            modalActions.appendChild(btn);
-
-        } else if (trustedNumbers.includes(rawWa)) {
-            const btn = createButton("BELI SEKARANG (TERPERCAYA)", "linear-gradient(to right, #00c853, #009624)", "white");
-            btn.onclick = () => window.open(`https://wa.me/${rawWa}?text=${textSeller}`, '_blank');
-            modalActions.appendChild(btn);
-
-        } else {
-            const btnDirect = createButton("BELI SEKARANG (DIRECT)", "linear-gradient(to right, #ff9800, #f57c00)", "white");
-            btnDirect.onclick = () => window.open(`https://wa.me/${rawWa}?text=${textSeller}`, '_blank');
+            fullscreenOverlay.style.display = 'flex';
             
-            const btnRekber = createButton("BELI DENGAN AMAN (REKBER)", "linear-gradient(to right, #9c27b0, #673ab7)", "white");
-            btnRekber.onclick = () => window.open(`https://wa.me/${ownerNumber}?text=${textRekber}`, '_blank');
-
-            modalActions.appendChild(btnDirect);
-            modalActions.appendChild(btnRekber);
+            const hasMultiple = currentModalImages.length > 1;
+            fsPrevBtn.style.display = hasMultiple ? 'flex' : 'none';
+            fsNextBtn.style.display = hasMultiple ? 'flex' : 'none';
         }
 
-        productModal.style.display = 'flex';
-    };
+        function updateFullscreenImage() {
+                if (currentModalImages.length > 0) {
+                    fullscreenImgDisplay.src = currentModalImages[currentFullscreenIndex];
+                }
+        }
 
-    function createButton(text, background, color) {
-        const btn = document.createElement('button');
-        btn.className = 'btn-modal';
-        btn.innerText = text;
-        btn.style.background = background;
-        btn.style.color = color;
-        btn.style.width = "100%"; 
-        btn.style.padding = "12px";
-        btn.style.border = "none";
-        btn.style.borderRadius = "8px";
-        btn.style.fontWeight = "bold";
-        btn.style.cursor = "pointer";
-        btn.style.marginBottom = "5px";
-        return btn;
-    }
+        window.moveFullscreenSlide = function(n) {
+                if (currentModalImages.length <= 1) return;
+                currentFullscreenIndex += n;
+                if (currentFullscreenIndex >= currentModalImages.length) currentFullscreenIndex = 0;
+                if (currentFullscreenIndex < 0) currentFullscreenIndex = currentModalImages.length - 1;
+                updateFullscreenImage();
+        }
 
-    window.closeModal = function() { productModal.style.display = 'none'; };
-    window.moveSlide = function(n) {
-        if (currentModalImages.length <= 1) return;
-        const images = document.querySelectorAll('.slider-img');
-        if (images[currentSlideIndex]) images[currentSlideIndex].classList.remove('active');
-        currentSlideIndex += n;
-        if (currentSlideIndex >= images.length) currentSlideIndex = 0;
-        if (currentSlideIndex < 0) currentSlideIndex = images.length - 1;
-        if (images[currentSlideIndex]) images[currentSlideIndex].classList.add('active');
-    };
-    productModal.addEventListener('click', (e) => { if (e.target === productModal) closeModal(); });
+        function closeFullscreen() {
+            fullscreenOverlay.style.display = 'none';
+            setTimeout(() => { fullscreenImgDisplay.src = ''; }, 300); 
+        }
 
-    // --- LOGIKA MODAL INFO ISNPRO ---
-    const infoModal = document.getElementById('infoModal');
-    const btnSidebarInfo = document.getElementById('btn-sidebar-info');
-
-    if (btnSidebarInfo) {
-        btnSidebarInfo.addEventListener('click', (e) => {
-            e.preventDefault();
-            infoModal.style.display = 'flex';
-            closeAllSidebars();
+        closeFullscreenBtn.addEventListener('click', closeFullscreen);
+        fullscreenOverlay.addEventListener('click', (e) => {
+            if (e.target === fullscreenOverlay) {
+                closeFullscreen();
+            }
         });
-    }
 
-    window.closeInfoModal = function() {
-        infoModal.style.display = 'none';
-    };
+        // --- MODAL PRODUCT LOGIC ---
+        window.openModal = function(data) {
+            currentModalImages = data.images;
+            currentSlideIndex = 0;
+            
+            document.getElementById('mTitle').innerText = data.name;
+            const priceFormatted = formatRupiah(data.price);
+            document.getElementById('mPrice').innerText = priceFormatted;
+            document.getElementById('mDesc').innerText = data.description;
+            
+            let rawWa = data.whatsapp.toString().replace(/\D/g, '');
+            if (rawWa.startsWith('0')) rawWa = '62' + rawWa.substring(1);
+            
+            modalImagesWrapper.innerHTML = '';
+            data.images.forEach((imgUrl, index) => {
+                const img = document.createElement('img');
+                img.src = imgUrl; 
+                img.className = `slider-img ${index === 0 ? 'active' : ''}`;
+                img.onclick = function() { openFullscreen(index); };
+                modalImagesWrapper.appendChild(img);
+            });
+            
+            const hasMultiple = data.images.length > 1 && data.images[0] !== "https://placehold.co/400x400/222/white?text=No+Image";
+            prevBtn.style.display = hasMultiple ? 'flex' : 'none';
+            nextBtn.style.display = hasMultiple ? 'flex' : 'none';
 
-    infoModal.addEventListener('click', (e) => {
-        if (e.target === infoModal) {
-            closeInfoModal();
+            modalActions.innerHTML = ''; 
+            modalActions.style.display = 'flex';
+            modalActions.style.flexDirection = 'column';
+            modalActions.style.gap = '10px';
+
+            const ownerNumber = "628988685425"; 
+            const trustedNumbers = ["628123456789", "628999999999"];
+
+            const textOwner = encodeURIComponent(`Halo Admin, saya ingin membeli produk *${data.name}* seharga ${priceFormatted}. Masih ready?`);
+            const textSeller = encodeURIComponent(`Halo kak, saya ingin membeli produk *${data.name}* seharga ${priceFormatted}. Masih tersedia?`);
+            const textRekber = encodeURIComponent(`Halo Admin, saya ingin request *JASA REKBER*.\n\nProduk: ${data.name}\nHarga: ${priceFormatted}\nLink Penjual: https://wa.me/${rawWa}\n\nMohon bantuannya min.`);
+
+            if (rawWa === ownerNumber) {
+                const btn = createButton("BELI SEKARANG (ADMIN)", "linear-gradient(to right, #00f2ff, #007bff)", "black");
+                btn.onclick = () => window.open(`https://wa.me/${ownerNumber}?text=${textOwner}`, '_blank');
+                modalActions.appendChild(btn);
+
+            } else if (trustedNumbers.includes(rawWa)) {
+                const btn = createButton("BELI SEKARANG (TERPERCAYA)", "linear-gradient(to right, #00c853, #009624)", "white");
+                btn.onclick = () => window.open(`https://wa.me/${rawWa}?text=${textSeller}`, '_blank');
+                modalActions.appendChild(btn);
+
+            } else {
+                const btnDirect = createButton("BELI SEKARANG (DIRECT)", "linear-gradient(to right, #ff9800, #f57c00)", "white");
+                btnDirect.onclick = () => window.open(`https://wa.me/${rawWa}?text=${textSeller}`, '_blank');
+                
+                const btnRekber = createButton("BELI DENGAN AMAN (REKBER)", "linear-gradient(to right, #9c27b0, #673ab7)", "white");
+                btnRekber.onclick = () => window.open(`https://wa.me/${ownerNumber}?text=${textRekber}`, '_blank');
+
+                modalActions.appendChild(btnDirect);
+                modalActions.appendChild(btnRekber);
+            }
+
+            productModal.style.display = 'flex';
+        };
+
+        function createButton(text, background, color) {
+            const btn = document.createElement('button');
+            btn.className = 'btn-modal';
+            btn.innerText = text;
+            btn.style.background = background;
+            btn.style.color = color;
+            btn.style.width = "100%"; 
+            btn.style.padding = "12px";
+            btn.style.border = "none";
+            btn.style.borderRadius = "8px";
+            btn.style.fontWeight = "bold";
+            btn.style.cursor = "pointer";
+            btn.style.marginBottom = "5px";
+            return btn;
         }
-    });
 
-    // --- PAGE LOGIC ---
-    function showPage(pageId) {
-        loadingOverlay.style.display = 'none';
-        halamanBaru.style.display = 'block';
-        navbar.classList.add('show');
-        defaultContent.style.display = 'none';
-        allPageContent.forEach(el => el.style.display = 'none');
+        window.closeModal = function() { productModal.style.display = 'none'; };
+        window.moveSlide = function(n) {
+            if (currentModalImages.length <= 1) return;
+            const images = document.querySelectorAll('.slider-img');
+            if (images[currentSlideIndex]) images[currentSlideIndex].classList.remove('active');
+            currentSlideIndex += n;
+            if (currentSlideIndex >= images.length) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = images.length - 1;
+            if (images[currentSlideIndex]) images[currentSlideIndex].classList.add('active');
+        };
+        productModal.addEventListener('click', (e) => { if (e.target === productModal) closeModal(); });
 
-        const targetElement = document.getElementById(pageId + '-content');
-        let pageTitle = "Website Isnpro";
-        let newUrl = window.location.pathname;
+        // --- INFO MODAL ---
+        const infoModal = document.getElementById('infoModal');
+        const btnSidebarInfo = document.getElementById('btn-sidebar-info');
 
-        if (targetElement) {
-            targetElement.style.display = 'block';
-            pageTitle = categoryMap[pageId] || "Welcome to website isnpro";
-            const h2 = targetElement.querySelector('h2'); if(h2) h2.innerText = pageTitle;
-            newUrl = '?page=' + pageId;
-            loadProducts(pageId);
-        } else {
-            defaultContent.style.display = 'block';
-            pageId = 'default';
+        if (btnSidebarInfo) {
+            btnSidebarInfo.addEventListener('click', (e) => {
+                e.preventDefault();
+                infoModal.style.display = 'flex';
+                closeAllSidebars();
+            });
         }
-        if (window.location.search !== newUrl) history.pushState({page: pageId}, pageTitle, newUrl);
-        document.title = pageTitle;
-    }
+        window.closeInfoModal = function() { infoModal.style.display = 'none'; };
+        infoModal.addEventListener('click', (e) => { if (e.target === infoModal) closeInfoModal(); });
 
-    function startLoading() {
-        loadingOverlay.style.display = 'flex'; animateLoadingText();
-        setTimeout(() => {
-            loadingOverlay.style.display = 'none'; clearInterval(textInterval);
-            showPage('default'); history.pushState({}, "Home", window.location.pathname);
-        }, 1500);
-    }
-    function animateLoadingText() {
-        let dots = 0; loadingText.textContent = 'loading'; clearInterval(textInterval);
-        textInterval = setInterval(() => { dots = (dots + 1) % 4; loadingText.textContent = 'loading' + '.'.repeat(dots); }, 500);
-    }
+        // --- PAGE TRANSITION & LOADING ---
+        function showPage(pageId) {
+            loadingOverlay.style.display = 'none';
+            halamanBaru.style.display = 'block';
+            navbar.classList.add('show');
+            defaultContent.style.display = 'none';
+            allPageContent.forEach(el => el.style.display = 'none');
 
-    window.addEventListener('DOMContentLoaded', () => {
-        const params = new URLSearchParams(window.location.search);
-        const page = params.get('page'); 
-        createStars(); 
-        
-        if (page) showPage(page); else startLoading();
-    });
+            const targetElement = document.getElementById(pageId + '-content');
+            let pageTitle = "Website Isnpro";
+            let newUrl = window.location.pathname;
 
-    window.onpopstate = () => {
-        const params = new URLSearchParams(window.location.search);
-        showPage(params.get('page') || 'default');
-    };
-    function createStars() {
-        const container = document.getElementById('star-container');
-        for (let i = 0; i < 40; i++) {
-            const star = document.createElement('div'); star.classList.add('star');
-            star.style.left = Math.random() * 100 + '%'; star.style.top = Math.random() * 100 + '%';
-            const size = Math.random() * 2 + 1; star.style.width = size + 'px'; star.style.height = size + 'px';
-            star.style.animationDuration = (Math.random() * 3 + 2) + 's'; star.style.animationDelay = (Math.random() * 5) + 's';
-            container.appendChild(star);
+            if (targetElement) {
+                targetElement.style.display = 'block';
+                pageTitle = categoryMap[pageId] || "Welcome to website isnpro";
+                const h2 = targetElement.querySelector('h2'); if(h2) h2.innerText = pageTitle;
+                newUrl = '?page=' + pageId;
+                loadProducts(pageId);
+            } else {
+                defaultContent.style.display = 'block';
+                pageId = 'default';
+            }
+            if (window.location.search !== newUrl) history.pushState({page: pageId}, pageTitle, newUrl);
+            document.title = pageTitle;
         }
-    }
-</script>
+
+        function startLoading() {
+            loadingOverlay.style.display = 'flex'; animateLoadingText();
+            // TIMEOUT DIKURANGI JADI 1500 (1.5 Detik) AGAR CEPAT
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none'; clearInterval(textInterval);
+                showPage('default'); history.pushState({}, "Home", window.location.pathname);
+            }, 1500);
+        }
+        function animateLoadingText() {
+            let dots = 0; loadingText.textContent = 'loading'; clearInterval(textInterval);
+            textInterval = setInterval(() => { dots = (dots + 1) % 4; loadingText.textContent = 'loading' + '.'.repeat(dots); }, 500);
+        }
+
+        // --- DOM CONTENT LOADED (Pengganti window.onload yang lambat) ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const page = params.get('page'); 
+            createStars(); 
+            
+            // Jalankan perhitungan counter sidebar di background
+            updateSidebarCounts();
+
+            if (page) showPage(page); else startLoading();
+        });
+
+        window.onpopstate = () => {
+            const params = new URLSearchParams(window.location.search);
+            showPage(params.get('page') || 'default');
+        };
+        function createStars() {
+            const container = document.getElementById('star-container');
+            for (let i = 0; i < 40; i++) {
+                const star = document.createElement('div'); star.classList.add('star');
+                star.style.left = Math.random() * 100 + '%'; star.style.top = Math.random() * 100 + '%';
+                const size = Math.random() * 2 + 1; star.style.width = size + 'px'; star.style.height = size + 'px';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's'; star.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(star);
+            }
+        }
+    </script>
 </body>
 </html>
