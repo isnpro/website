@@ -435,66 +435,86 @@
                 const img = document.createElement('img');
                 img.src = imgUrl; 
                 img.className = `slider-img ${index === 0 ? 'active' : ''}`;
-                
-                img.onclick = function() {
-                    openFullscreen(index);
-                };
-                
+                img.onclick = function() { openFullscreen(index); };
                 modalImagesWrapper.appendChild(img);
             });
             
-            // Tombol Slider (Prev/Next)
+            // Tombol Slider
             const hasMultiple = data.images.length > 1 && data.images[0] !== "https://placehold.co/400x400/222/white?text=No+Image";
             prevBtn.style.display = hasMultiple ? 'flex' : 'none';
             nextBtn.style.display = hasMultiple ? 'flex' : 'none';
 
             // === LOGIKA TOMBOL BELI ===
-            modalActions.innerHTML = ''; // Bersihkan tombol sebelumnya
+            modalActions.innerHTML = ''; // Reset tombol
+            
+            // Atur styling container agar jika ada 2 tombol bisa rapi
+            modalActions.style.display = 'flex';
+            modalActions.style.flexDirection = 'column';
+            modalActions.style.gap = '10px';
 
-            const btnBuy = document.createElement('button');
-            btnBuy.className = 'btn-modal btn-direct'; 
+            // --- DAFTAR NOMOR ---
+            const ownerNumber = "628988685425"; // Nomor Admin/Rekber
             
-            // --- KONFIGURASI NOMOR ---
-            const ownerNumber = "628988685425"; // Nomor Utama/Owner
-            
-            // LIST NOMOR TERPERCAYA (Tambahkan nomor lain di sini dipisahkan koma)
+            // LIST NOMOR TERPERCAYA (Seller Verified)
             const trustedNumbers = [
-                "628123456789"
+                "628123456789", 
+                "628999999999" 
             ];
 
-            // Pesan WhatsApp
+            // --- TEMPLATE PESAN ---
             const textOwner = encodeURIComponent(`Halo Admin, saya ingin membeli produk *${data.name}* seharga ${priceFormatted}. Masih ready?`);
             const textSeller = encodeURIComponent(`Halo kak, saya ingin membeli produk *${data.name}* seharga ${priceFormatted}. Masih tersedia?`);
+            // Pesan Rekber (Kirim ke Admin)
+            const textRekber = encodeURIComponent(`Halo Admin, saya ingin request *JASA REKBER*.\n\nProduk: ${data.name}\nHarga: ${priceFormatted}\nLink Penjual: https://wa.me/${rawWa}\n\nMohon bantuannya min.`);
 
             // --- CEK KONDISI ---
+            
             if (rawWa === ownerNumber) {
-                // 1. KONDISI OWNER (Biru)
-                btnBuy.innerText = "BELI SEKARANG (ADMIN)";
-                btnBuy.style.background = "linear-gradient(to right, #00f2ff, #007bff)"; 
-                btnBuy.style.color = "black";
-                btnBuy.style.fontWeight = "bold";
-                btnBuy.onclick = () => window.open(`https://wa.me/${ownerNumber}?text=${textOwner}`, '_blank');
+                // 1. KONDISI: OWNER (1 Tombol Biru)
+                const btn = createButton("BELI SEKARANG (ADMIN)", "linear-gradient(to right, #00f2ff, #007bff)", "black");
+                btn.onclick = () => window.open(`https://wa.me/${ownerNumber}?text=${textOwner}`, '_blank');
+                modalActions.appendChild(btn);
 
             } else if (trustedNumbers.includes(rawWa)) {
-                // 2. KONDISI TRUSTED LIST (Hijau)
-                btnBuy.innerText = "BELI SEKARANG (TERPERCAYA)";
-                btnBuy.style.background = "linear-gradient(to right, #00c853, #009624)"; 
-                btnBuy.style.color = "white";
-                btnBuy.onclick = () => window.open(`https://wa.me/${rawWa}?text=${textSeller}`, '_blank');
+                // 2. KONDISI: TRUSTED LIST (1 Tombol Hijau)
+                const btn = createButton("BELI SEKARANG (TERPERCAYA)", "linear-gradient(to right, #00c853, #009624)", "white");
+                btn.onclick = () => window.open(`https://wa.me/${rawWa}?text=${textSeller}`, '_blank');
+                modalActions.appendChild(btn);
 
             } else {
-                // 3. KONDISI SELLER LAIN / UMUM (Oranye/Netral)
-                // Tetap direct ke WA penjual, tapi labelnya standar
-                btnBuy.innerText = "BELI SEKARANG (SELLER)";
-                btnBuy.style.background = "linear-gradient(to right, #ff9800, #f57c00)"; // Warna oranye peringatan/standar
-                btnBuy.style.color = "white";
-                btnBuy.onclick = () => window.open(`https://wa.me/${rawWa}?text=${textSeller}`, '_blank');
+                // 3. KONDISI: SELLER UMUM / UNKNOWN (2 Tombol)
+                
+                // Tombol A: Direct (Oranye/Waspada)
+                const btnDirect = createButton("BELI SEKARANG (DIRECT)", "linear-gradient(to right, #ff9800, #f57c00)", "white");
+                btnDirect.onclick = () => window.open(`https://wa.me/${rawWa}?text=${textSeller}`, '_blank');
+                
+                // Tombol B: Rekber (Ungu/Aman) -> Mengarah ke WA Owner
+                const btnRekber = createButton("BELI DENGAN AMAN (REKBER)", "linear-gradient(to right, #9c27b0, #673ab7)", "white");
+                btnRekber.onclick = () => window.open(`https://wa.me/${ownerNumber}?text=${textRekber}`, '_blank');
+
+                modalActions.appendChild(btnDirect);
+                modalActions.appendChild(btnRekber);
             }
 
-            modalActions.appendChild(btnBuy);
             productModal.style.display = 'flex';
         };
 
+        // Helper function untuk membuat tombol agar kodingan lebih rapi
+        function createButton(text, background, color) {
+            const btn = document.createElement('button');
+            btn.className = 'btn-modal';
+            btn.innerText = text;
+            btn.style.background = background;
+            btn.style.color = color;
+            btn.style.width = "100%"; // Supaya tombol penuh container
+            btn.style.padding = "12px";
+            btn.style.border = "none";
+            btn.style.borderRadius = "8px";
+            btn.style.fontWeight = "bold";
+            btn.style.cursor = "pointer";
+            btn.style.marginBottom = "5px";
+            return btn;
+        }
 
         window.closeModal = function() { productModal.style.display = 'none'; };
         window.moveSlide = function(n) {
