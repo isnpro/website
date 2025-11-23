@@ -598,11 +598,16 @@
             let dots = 0; loadingText.textContent = 'loading'; clearInterval(textInterval);
             textInterval = setInterval(() => { dots = (dots + 1) % 4; loadingText.textContent = 'loading' + '.'.repeat(dots); }, 500);
         }
-        window.onload = () => {
-            const params = new URLSearchParams(window.location.search);
-            const page = params.get('page'); createStars();
-            if (page) showPage(page); else startLoading();
-        };
+// GANTI DENGAN INI:
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const page = params.get('page'); 
+    createStars(); // Star animation segera jalan
+    
+    // Langsung jalankan loading tanpa menunggu gambar
+    if (page) showPage(page); else startLoading();
+});
+
         window.onpopstate = () => {
             const params = new URLSearchParams(window.location.search);
             showPage(params.get('page') || 'default');
