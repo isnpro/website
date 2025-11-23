@@ -21,7 +21,7 @@
             </button>
         </div>
 
-        <div class="sidebar-label">UTAMA</div>
+        <div class="sidebar-label">KATEGORI PRODUK</div>
         <ul class="sidebar-menu-list">
             <li>
                 <a href="#" data-page="sewa_bot"> 
@@ -35,10 +35,6 @@
                     <span>Script bot</span>
                 </a>
             </li>
-        </ul>
-
-        <div class="sidebar-label">LAINNYA</div>
-        <ul class="sidebar-menu-list">
             <li>
                 <a href="#" data-page="topup_game">
                     <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
@@ -61,6 +57,12 @@
                 <a href="#" data-page="apk_premium">
                     <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
                     <span>Apk Premium</span>
+                </a>
+            </li>
+            <li>
+            <a href="#" data-page="campuran">
+                    <img src="https://api.deline.web.id/ltSnd8k2WI.jpg" alt="Icon" class="store-profile-pic">
+                    <span>Produk Campuran</span>
                 </a>
             </li>
         </ul>
@@ -134,6 +136,14 @@
             <h2 class="page-title">Aplikasi Premium</h2>
             <div class="search-wrapper">
                 <input type="text" class="search-input" placeholder="Cari aplikasi...">
+            </div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+        <div id="campuran-content" class="page-content">
+            <h2 class="page-title">Produk Campuran</h2>
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Cari produk...">
             </div>
             <hr class="page-divider">
             <div class="product-grid-placeholder"></div>
@@ -273,7 +283,8 @@
             'script_bot': 'Halaman Script Bot',
             'acc_allgame': 'Halaman Jual Akun', 
             'joki_allgame': 'Halaman Joki Akun',
-            'apk_premium': 'Aplikasi Premium' 
+            'apk_premium': 'Aplikasi Premium',
+            'campuran': 'Halaman Produk Campuran'
         };
 
         function formatRupiah(number) {
