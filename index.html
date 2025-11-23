@@ -122,30 +122,29 @@
         <div id="topup_game-content" class="page-content"><h2 class="page-title">Halaman Topup Allame</h2><div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari game..."></div><hr class="page-divider"><div class="product-grid-placeholder"></div></div>
         <div id="script_bot-content" class="page-content"><h2 class="page-title">Halaman Script Bot</h2><div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari script..."></div><hr class="page-divider"><div class="product-grid-placeholder"></div></div>
         <div id="acc_allgame-content" class="page-content"><h2 class="page-title">Jual Akun Allgame</h2><div class="search-wrapper"><input type="text" class="search-input" placeholder="Cari akun..."></div><hr class="page-divider"><div class="product-grid-placeholder"></div></div>
-<div id="joki_allgame-content" class="page-content">
-    <h2 class="page-title">Jasa Joki Allgame</h2>
-    <div class="search-wrapper">
-        <input type="text" class="search-input" placeholder="Cari joki...">
-    </div>
-    <hr class="page-divider">
-    <div class="product-grid-placeholder"></div>
-</div> <div id="apk_premium-content" class="page-content">
-    <h2 class="page-title">Aplikasi Premium</h2>
-    <div class="search-wrapper">
-        <input type="text" class="search-input" placeholder="Cari aplikasi...">
-    </div>
-    <hr class="page-divider">
-    <div class="product-grid-placeholder"></div>
-</div>
-    <hr class="page-divider">
-    <div class="product-grid-placeholder"></div>
-</div></div>
-        
+        <div id="joki_allgame-content" class="page-content">
+            <h2 class="page-title">Jasa Joki Allgame</h2>
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Cari joki...">
+            </div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div> 
+        <div id="apk_premium-content" class="page-content">
+            <h2 class="page-title">Aplikasi Premium</h2>
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Cari aplikasi...">
+            </div>
+            <hr class="page-divider">
+            <div class="product-grid-placeholder"></div>
+        </div>
+
         <footer class="global-footer">
             © 2025 Isnpro Market. All rights reserved.
         </footer>
     </div>
 
+    <!-- MODAL PRODUK UTAMA -->
     <div id="productModal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -161,14 +160,14 @@
                 <div class="modal-price" id="mPrice">Rp 0</div>
                 <div class="modal-desc" id="mDesc">Deskripsi...</div>
                 
-                <div class="modal-actions">
-                    <button id="btnBuyDirect" class="btn-modal btn-direct">Beli Tanpa MC (Chat Penjual)</button>
-                    <button id="btnBuyMC" class="btn-modal btn-mc">Beli Menggunakan MC (Admin)</button>
+                <div class="modal-actions" id="modalActions">
+                    <!-- Tombol Beli akan digenerate oleh Javascript (Hanya 1 tombol) -->
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- MODAL INFO ISNPRO -->
     <div id="infoModal" class="modal-overlay">
         <div class="modal-content modal-white-theme">
             <span class="close-modal text-dark" onclick="closeInfoModal()">&times;</span>
@@ -212,6 +211,16 @@
         </div>
     </div>
 
+    <!-- FULLSCREEN ZOOM OVERLAY (DENGAN NAVIGASI) -->
+    <div id="fullscreenImageOverlay" class="fullscreen-overlay">
+        <span class="close-fullscreen">&times;</span>
+        
+        <!-- TOMBOL NAVIGASI FULLSCREEN -->
+        <button class="fullscreen-btn prev" onclick="moveFullscreenSlide(-1)">&#10094;</button>
+        <img src="" alt="Fullscreen Image" id="fullscreenImgDisplay">
+        <button class="fullscreen-btn next" onclick="moveFullscreenSlide(1)">&#10095;</button>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -243,21 +252,29 @@
         const modalImagesWrapper = document.getElementById('modalImagesWrapper'); 
         const prevBtn = document.querySelector('.slider-btn.prev-btn');
         const nextBtn = document.querySelector('.slider-btn.next-btn');
+        const modalActions = document.getElementById('modalActions');
+
+        // --- VARIABEL UNTUK FULLSCREEN ZOOM ---
+        const fullscreenOverlay = document.getElementById('fullscreenImageOverlay');
+        const fullscreenImgDisplay = document.getElementById('fullscreenImgDisplay');
+        const closeFullscreenBtn = document.querySelector('.close-fullscreen');
+        const fsPrevBtn = document.querySelector('.fullscreen-btn.prev');
+        const fsNextBtn = document.querySelector('.fullscreen-btn.next');
 
         let loadingTimeout;
         let textInterval;
         let currentSlideIndex = 0;
         let currentModalImages = [];
+        let currentFullscreenIndex = 0; // Index untuk fullscreen
         
         const categoryMap = {
-    'sewa_bot': 'Halaman Sewa Bot', 
-    'topup_game': 'Halaman Topup Game', 
-    'script_bot': 'Halaman Script Bot',
-    'acc_allgame': 'Halaman Jual Akun', 
-    'joki_allgame': 'Halaman Joki Akun',
-    'apk_premium': 'Aplikasi Premium' 
-};
-
+            'sewa_bot': 'Halaman Sewa Bot', 
+            'topup_game': 'Halaman Topup Game', 
+            'script_bot': 'Halaman Script Bot',
+            'acc_allgame': 'Halaman Jual Akun', 
+            'joki_allgame': 'Halaman Joki Akun',
+            'apk_premium': 'Aplikasi Premium' 
+        };
 
         function formatRupiah(number) {
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
@@ -284,7 +301,6 @@
 
         sidebarOverlay.addEventListener('click', closeAllSidebars);
 
-        // Event Listener untuk link menu
         document.querySelectorAll('.sidebar-menu-list a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -360,32 +376,126 @@
             }
         }
 
+        // --- LOGIKA FULLSCREEN ZOOM & SLIDER ---
+        window.openFullscreen = function(index) {
+            currentFullscreenIndex = index;
+            updateFullscreenImage();
+            fullscreenOverlay.style.display = 'flex';
+            
+            // Cek apakah perlu tombol prev/next di fullscreen
+            const hasMultiple = currentModalImages.length > 1;
+            fsPrevBtn.style.display = hasMultiple ? 'flex' : 'none';
+            fsNextBtn.style.display = hasMultiple ? 'flex' : 'none';
+        }
+
+        function updateFullscreenImage() {
+             if (currentModalImages.length > 0) {
+                 fullscreenImgDisplay.src = currentModalImages[currentFullscreenIndex];
+             }
+        }
+
+        window.moveFullscreenSlide = function(n) {
+             if (currentModalImages.length <= 1) return;
+             currentFullscreenIndex += n;
+             if (currentFullscreenIndex >= currentModalImages.length) currentFullscreenIndex = 0;
+             if (currentFullscreenIndex < 0) currentFullscreenIndex = currentModalImages.length - 1;
+             updateFullscreenImage();
+        }
+
+        function closeFullscreen() {
+            fullscreenOverlay.style.display = 'none';
+            setTimeout(() => { fullscreenImgDisplay.src = ''; }, 300); 
+        }
+
+        closeFullscreenBtn.addEventListener('click', closeFullscreen);
+        fullscreenOverlay.addEventListener('click', (e) => {
+            if (e.target === fullscreenOverlay) {
+                closeFullscreen();
+            }
+        });
+
         // --- PRODUCT MODAL LOGIC ---
         window.openModal = function(data) {
             currentModalImages = data.images;
             currentSlideIndex = 0;
+            
+            // Set Data Dasar
             document.getElementById('mTitle').innerText = data.name;
             const priceFormatted = formatRupiah(data.price);
             document.getElementById('mPrice').innerText = priceFormatted;
             document.getElementById('mDesc').innerText = data.description;
             
-            const waNumber = data.whatsapp.startsWith('62') ? data.whatsapp : '62' + data.whatsapp;
+            // Bersihkan nomor WA (Format 62)
+            let rawWa = data.whatsapp.toString().replace(/\D/g, '');
+            if (rawWa.startsWith('0')) rawWa = '62' + rawWa.substring(1);
+            
+            // Render Gambar
             modalImagesWrapper.innerHTML = '';
             data.images.forEach((imgUrl, index) => {
                 const img = document.createElement('img');
-                img.src = imgUrl; img.className = `slider-img ${index === 0 ? 'active' : ''}`;
+                img.src = imgUrl; 
+                img.className = `slider-img ${index === 0 ? 'active' : ''}`;
+                
+                img.onclick = function() {
+                    openFullscreen(index);
+                };
+                
                 modalImagesWrapper.appendChild(img);
             });
             
+            // Tombol Slider (Prev/Next)
             const hasMultiple = data.images.length > 1 && data.images[0] !== "https://placehold.co/400x400/222/white?text=No+Image";
-            prevBtn.style.display = hasMultiple ? 'block' : 'none';
-            nextBtn.style.display = hasMultiple ? 'block' : 'none';
+            prevBtn.style.display = hasMultiple ? 'flex' : 'none';
+            nextBtn.style.display = hasMultiple ? 'flex' : 'none';
 
-            document.getElementById('btnBuyDirect').onclick = () => window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(`Halo kak, saya ingin membeli produk *${data.name}* seharga ${priceFormatted}. Masih tersedia?`)}`, '_blank');
-            document.getElementById('btnBuyMC').onclick = () => window.open(`https://wa.me/628988685425?text=${encodeURIComponent(`Min saya ingin membeli "${data.name}" harganya "${priceFormatted}" dan penjualnya adalah "wa.me/${waNumber}"`)}`, '_blank'); 
+            // === LOGIKA TOMBOL BELI ===
+            modalActions.innerHTML = ''; // Bersihkan tombol sebelumnya
 
+            const btnBuy = document.createElement('button');
+            btnBuy.className = 'btn-modal btn-direct'; 
+            
+            // --- KONFIGURASI NOMOR ---
+            const ownerNumber = "628988685425"; // Nomor Utama/Owner
+            
+            // LIST NOMOR TERPERCAYA (Tambahkan nomor lain di sini dipisahkan koma)
+            const trustedNumbers = [
+                "628123456789"
+            ];
+
+            // Pesan WhatsApp
+            const textOwner = encodeURIComponent(`Halo Admin, saya ingin membeli produk *${data.name}* seharga ${priceFormatted}. Masih ready?`);
+            const textSeller = encodeURIComponent(`Halo kak, saya ingin membeli produk *${data.name}* seharga ${priceFormatted}. Masih tersedia?`);
+
+            // --- CEK KONDISI ---
+            if (rawWa === ownerNumber) {
+                // 1. KONDISI OWNER (Biru)
+                btnBuy.innerText = "BELI SEKARANG (ADMIN)";
+                btnBuy.style.background = "linear-gradient(to right, #00f2ff, #007bff)"; 
+                btnBuy.style.color = "black";
+                btnBuy.style.fontWeight = "bold";
+                btnBuy.onclick = () => window.open(`https://wa.me/${ownerNumber}?text=${textOwner}`, '_blank');
+
+            } else if (trustedNumbers.includes(rawWa)) {
+                // 2. KONDISI TRUSTED LIST (Hijau)
+                btnBuy.innerText = "BELI SEKARANG (TERPERCAYA)";
+                btnBuy.style.background = "linear-gradient(to right, #00c853, #009624)"; 
+                btnBuy.style.color = "white";
+                btnBuy.onclick = () => window.open(`https://wa.me/${rawWa}?text=${textSeller}`, '_blank');
+
+            } else {
+                // 3. KONDISI SELLER LAIN / UMUM (Oranye/Netral)
+                // Tetap direct ke WA penjual, tapi labelnya standar
+                btnBuy.innerText = "BELI SEKARANG (SELLER)";
+                btnBuy.style.background = "linear-gradient(to right, #ff9800, #f57c00)"; // Warna oranye peringatan/standar
+                btnBuy.style.color = "white";
+                btnBuy.onclick = () => window.open(`https://wa.me/${rawWa}?text=${textSeller}`, '_blank');
+            }
+
+            modalActions.appendChild(btnBuy);
             productModal.style.display = 'flex';
         };
+
+
         window.closeModal = function() { productModal.style.display = 'none'; };
         window.moveSlide = function(n) {
             if (currentModalImages.length <= 1) return;
