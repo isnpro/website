@@ -398,10 +398,18 @@
                 const snapshot = await getDocs(q);
 
                 const counts = {
-                    'sewa_bot': 0, 'script_bot': 0, 'topup_game': 0,
-                    'topup_game1': 0, 'acc_allgame': 0, 'joki_allgame': 0,
-                    'apk_premium': 0, 'campuran': 0
+                    'sewa_bot': 0, 
+                    'script_bot': 0, 
+                    'topup_game': 0,
+                    'topup_game1': 0, 
+                    'topup_game2': 0, 
+                    'gamepass': 0, 
+                    'acc_allgame': 0, 
+                    'joki_allgame': 0,
+                    'apk_premium': 0, 
+                    'campuran': 0
                 };
+
 
                 snapshot.forEach(doc => {
                     const data = doc.data();
