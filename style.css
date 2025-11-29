@@ -653,3 +653,81 @@ body {
     border-top: 1px solid #1e293b;
     margin-top: auto;
 }
+
+/* =========================================
+   10. ANNOUNCEMENT MODAL (POPUP PENGUMUMAN)
+   ========================================= */
+.announcement-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.95); z-index: 9999;
+    display: none; justify-content: center; align-items: center;
+    backdrop-filter: blur(10px); animation: fadeIn 0.5s;
+}
+
+.announcement-box {
+    width: 90%; max-width: 450px;
+    background: linear-gradient(160deg, #0b162c 0%, #02040a 100%);
+    border: 2px solid var(--primary-blue);
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0, 242, 255, 0.2);
+    position: relative;
+    padding: 0; overflow: hidden;
+    display: flex; flex-direction: column;
+}
+
+.announcement-banner {
+    width: 100%; height: 150px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--primary-blue);
+}
+
+.announcement-content {
+    padding: 25px;
+}
+
+.announcement-title {
+    text-align: center; color: var(--primary-blue);
+    font-size: 1.5rem; font-weight: 800; margin-bottom: 20px;
+    text-transform: uppercase; letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+.announcement-list {
+    display: flex; flex-direction: column; gap: 12px;
+}
+
+.announcement-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 15px; border-radius: 10px;
+    color: white; border: 1px solid #334155;
+    font-size: 0.95rem; display: flex; align-items: center;
+}
+
+.announcement-item::before {
+    content: '📢'; margin-right: 10px; font-size: 1.2rem;
+}
+
+.close-announcement {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(0,0,0,0.6); color: white;
+    width: 35px; height: 35px; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 20px; cursor: pointer; border: 1px solid white;
+    transition: 0.3s; z-index: 10;
+}
+.close-announcement:hover { background: #d50000; border-color: #d50000; }
+
+/* Filter Buttons di Admin */
+.filter-container {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+    padding: 15px; background: rgba(255,255,255,0.03); border-radius: 10px;
+}
+.btn-filter-cat {
+    padding: 8px 12px; font-size: 0.8rem;
+    background: #1e293b; color: #cbd5e1; border: 1px solid #334155;
+    border-radius: 6px; cursor: pointer; transition: 0.3s;
+}
+.btn-filter-cat:hover, .btn-filter-cat.active {
+    background: var(--primary-blue); color: black; border-color: var(--primary-blue);
+    font-weight: bold;
+}
